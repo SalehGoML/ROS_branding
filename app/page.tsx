@@ -2,6 +2,9 @@ import HeroForm from '@/components/home/HeroForm'
 import MarqueeSection from '@/components/home/MarqueeSection'
 import AdvantageSection from '@/components/home/AdvantageSection'
 import ServicesSection from '@/components/home/ServicesSection'
+import PortfolioSection from '@/components/home/PortfolioSection'
+import ProcessSection from '@/components/home/ProcessSection'
+import CTASection from '@/components/home/CTASection'
 
 export default function HomePage() {
   return (
@@ -17,8 +20,6 @@ export default function HomePage() {
         overflow: 'hidden',
         background: 'var(--c-bg)',
       }}>
-
-        {/* Grid texture */}
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: `
@@ -29,8 +30,6 @@ export default function HomePage() {
           opacity: .35,
           pointerEvents: 'none',
         }} />
-
-        {/* Fade bottom */}
         <div style={{
           position: 'absolute',
           bottom: 0, left: 0, right: 0,
@@ -38,14 +37,11 @@ export default function HomePage() {
           background: 'linear-gradient(to bottom, transparent, var(--c-bg))',
           pointerEvents: 'none',
         }} />
-
         <div style={{
           position: 'relative', zIndex: 2,
           maxWidth: 1280, margin: '0 auto',
           padding: '5rem 2rem 4rem',
         }}>
-
-          {/* Tag */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '.6rem',
             padding: '.4rem 1rem',
@@ -66,7 +62,6 @@ export default function HomePage() {
             آژانس هوشمند برندینگ | تهران
           </div>
 
-          {/* Headline */}
           <h1 style={{
             fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)',
             fontWeight: 700,
@@ -82,7 +77,6 @@ export default function HomePage() {
             و تحلیل هوشمند
           </h1>
 
-          {/* Subline */}
           <p style={{
             fontSize: '1.15rem', fontWeight: 300,
             color: 'var(--c-text-muted)',
@@ -93,10 +87,8 @@ export default function HomePage() {
             و درک فرهنگی بازار ایران برای ساخت برندهایی که ماندگار می‌مانند.
           </p>
 
-          {/* Form */}
           <HeroForm />
 
-          {/* Trust badges */}
           <div style={{
             display: 'flex', alignItems: 'center',
             gap: '2rem', marginTop: '3rem', flexWrap: 'wrap',
@@ -125,7 +117,6 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -134,8 +125,18 @@ export default function HomePage() {
 
       {/* ── Advantage ── */}
       <AdvantageSection />
+
+      {/* ── Services ── */}
       <ServicesSection />
+
+      {/* ── Portfolio ── */}
+      <PortfolioSection />
+
+      {/* ── Process ── */}
+      <ProcessSection />
+
+      {/* ── CTA ── */}
+      <CTASection />
     </>
-    
   )
 }
