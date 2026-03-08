@@ -1,4 +1,7 @@
 import HeroForm from '@/components/home/HeroForm'
+import MarqueeSection from '@/components/home/MarqueeSection'
+import AdvantageSection from '@/components/home/AdvantageSection'
+import ServicesSection from '@/components/home/ServicesSection'
 
 export default function HomePage() {
   return (
@@ -125,6 +128,14 @@ export default function HomePage() {
 
         </div>
       </section>
+
+      {/* ── Marquee ── */}
+      <MarqueeSection />
+
+      {/* ── Advantage ── */}
+      <AdvantageSection />
+      <ServicesSection />
     </>
+    
   )
 }
