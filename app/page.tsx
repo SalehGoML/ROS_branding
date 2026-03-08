@@ -1,65 +1,130 @@
-import Image from "next/image";
+import HeroForm from '@/components/home/HeroForm'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      {/* ── Hero ── */}
+      <section style={{
+        minHeight: '100vh',
+        paddingTop: 68,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'var(--c-bg)',
+      }}>
+
+        {/* Grid texture */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: `
+            linear-gradient(var(--c-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--c-border) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+          opacity: .35,
+          pointerEvents: 'none',
+        }} />
+
+        {/* Fade bottom */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0, left: 0, right: 0,
+          height: 200,
+          background: 'linear-gradient(to bottom, transparent, var(--c-bg))',
+          pointerEvents: 'none',
+        }} />
+
+        <div style={{
+          position: 'relative', zIndex: 2,
+          maxWidth: 1280, margin: '0 auto',
+          padding: '5rem 2rem 4rem',
+        }}>
+
+          {/* Tag */}
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '.6rem',
+            padding: '.4rem 1rem',
+            background: 'var(--c-primary-bg)',
+            border: '1px solid rgba(46,107,94,.2)',
+            borderRadius: 100,
+            fontSize: '.78rem', fontWeight: 500,
+            color: 'var(--c-primary)',
+            marginBottom: '2rem',
+          }}>
+            <span style={{
+              width: 7, height: 7,
+              background: 'var(--c-primary)',
+              borderRadius: '50%',
+              display: 'inline-block',
+              animation: 'pulse-dot 2s ease-in-out infinite',
+            }} />
+            آژانس هوشمند برندینگ | تهران
+          </div>
+
+          {/* Headline */}
+          <h1 style={{
+            fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)',
+            fontWeight: 700,
+            lineHeight: 1.18,
+            letterSpacing: '-.03em',
+            maxWidth: 820,
+            marginBottom: '1.5rem',
+          }}>
+            مدیریت یکپارچگی برند<br />
+            با{' '}
+            <span style={{ color: 'var(--c-primary)' }}>تفکر استراتژیک</span>
+            <br />
+            و تحلیل هوشمند
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          {/* Subline */}
+          <p style={{
+            fontSize: '1.15rem', fontWeight: 300,
+            color: 'var(--c-text-muted)',
+            maxWidth: 520, lineHeight: 1.75,
+            marginBottom: '3rem',
+          }}>
+            رس | آژانس هوشمند برندینگ — ترکیب دقیق تحلیل داده
+            و درک فرهنگی بازار ایران برای ساخت برندهایی که ماندگار می‌مانند.
           </p>
+
+          {/* Form */}
+          <HeroForm />
+
+          {/* Trust badges */}
+          <div style={{
+            display: 'flex', alignItems: 'center',
+            gap: '2rem', marginTop: '3rem', flexWrap: 'wrap',
+          }}>
+            {[
+              { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',          label: 'تحلیل داده‌محور' },
+              { icon: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM2 12h20',      label: 'درک بازار ایران' },
+              { icon: 'M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3', label: 'خروجی‌های اجرایی' },
+            ].map(item => (
+              <div key={item.label} style={{
+                display: 'flex', alignItems: 'center', gap: '.5rem',
+                fontSize: '.8rem', color: 'var(--c-text-muted)',
+              }}>
+                <div style={{
+                  width: 28, height: 28,
+                  background: 'var(--c-primary-bg)',
+                  borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="var(--c-primary)" strokeWidth="2">
+                    <path d={item.icon}/>
+                  </svg>
+                </div>
+                {item.label}
+              </div>
+            ))}
+          </div>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </section>
+    </>
+  )
 }
