@@ -1,142 +1,139 @@
-import HeroForm from '@/components/home/HeroForm'
-import MarqueeSection from '@/components/home/MarqueeSection'
-import AdvantageSection from '@/components/home/AdvantageSection'
-import ServicesSection from '@/components/home/ServicesSection'
-import PortfolioSection from '@/components/home/PortfolioSection'
-import ProcessSection from '@/components/home/ProcessSection'
-import CTASection from '@/components/home/CTASection'
+import HeroForm from '../components/home/HeroForm'
+import HeroImageLinks from '../components/home/HeroImageLinks'
+import MarqueeSection from '../components/home/MarqueeSection'
+import AdvantageSection from '../components/home/AdvantageSection'
+import ServicesSection from '../components/home/ServicesSection'
+import PortfolioSection from '../components/home/PortfolioSection'
+import ProcessSection from '../components/home/ProcessSection'
+import CTASection from '../components/home/CTASection'
 
 export default function HomePage() {
   return (
-    <>
-      {/* ── Hero ── */}
+    <main style={{ background: '#0C0F0E', color: 'white' }}>
       <section style={{
         minHeight: '100vh',
-        paddingTop: 68,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        background: 'var(--c-bg)',
+        display: 'flex', flexDirection: 'column',
+        justifyContent: 'center', alignItems: 'center',
+        padding: '7rem 2rem 4rem',
+        position: 'relative', overflow: 'hidden',
+        textAlign: 'center',
       }}>
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: `
-            linear-gradient(var(--c-border) 1px, transparent 1px),
-            linear-gradient(90deg, var(--c-border) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
-          opacity: .35,
-          pointerEvents: 'none',
+          backgroundImage: 'linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px', pointerEvents: 'none',
         }} />
         <div style={{
-          position: 'absolute',
-          bottom: 0, left: 0, right: 0,
-          height: 200,
-          background: 'linear-gradient(to bottom, transparent, var(--c-bg))',
-          pointerEvents: 'none',
+          position: 'absolute', top: '15%', left: '50%',
+          transform: 'translateX(-50%)',
+          width: 500, height: 250,
+          background: 'radial-gradient(ellipse, rgba(46,107,94,.15) 0%, transparent 70%)',
+          pointerEvents: 'none', filter: 'blur(60px)',
         }} />
+
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: '.5rem',
+          padding: '.3rem 1rem .3rem .5rem',
+          background: 'rgba(46,107,94,.12)',
+          border: '1px solid rgba(46,107,94,.25)',
+          borderRadius: 100,
+          fontSize: '.7rem', color: 'rgba(255,255,255,.55)',
+          marginBottom: '1.75rem',
+          position: 'relative', zIndex: 2,
+        }}>
+          <span style={{
+            padding: '.18rem .6rem',
+            background: '#2E6B5E', color: 'white',
+            borderRadius: 100, fontSize: '.62rem', fontWeight: 700,
+          }}>ROS</span>
+          آژانس هوشمند برندینگ | تهران
+        </div>
+
         <div style={{
           position: 'relative', zIndex: 2,
-          maxWidth: 1280, margin: '0 auto',
-          padding: '5rem 2rem 4rem',
+          width: '100%', maxWidth: 780,
+          marginBottom: '2.25rem',
         }}>
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '.6rem',
-            padding: '.4rem 1rem',
-            background: 'var(--c-primary-bg)',
-            border: '1px solid rgba(46,107,94,.2)',
-            borderRadius: 100,
-            fontSize: '.78rem', fontWeight: 500,
-            color: 'var(--c-primary)',
-            marginBottom: '2rem',
+            borderRadius: 16, overflow: 'hidden',
+            border: '1px solid rgba(255,255,255,.08)',
+            position: 'relative',
           }}>
-            <span style={{
-              width: 7, height: 7,
-              background: 'var(--c-primary)',
-              borderRadius: '50%',
-              display: 'inline-block',
-              animation: 'pulse-dot 2s ease-in-out infinite',
+            <img
+              src="/brand/wallpaper-1.jpg"
+              alt="ROS Branding"
+              style={{
+                width: '100%', height: 500,
+                objectFit: 'cover', objectPosition: 'center 35%',
+                display: 'block',
+                filter: 'brightness(.5) saturate(1.15)',
+              }}
+            />
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to left, rgba(46,107,94,.25) 0%, rgba(0,0,0,.3) 60%)',
             }} />
-            آژانس هوشمند برندینگ | تهران
+            <HeroImageLinks />
+            <div style={{
+              position: 'absolute', top: '20%', bottom: '20%',
+              left: '50%', width: 1,
+              background: 'rgba(255,255,255,.15)',
+              pointerEvents: 'none',
+            }} />
           </div>
+        </div>
 
-          <h1 style={{
-            fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)',
-            fontWeight: 700,
-            lineHeight: 1.18,
-            letterSpacing: '-.03em',
-            maxWidth: 820,
-            marginBottom: '1.5rem',
-          }}>
-            مدیریت یکپارچگی برند<br />
-            با{' '}
-            <span style={{ color: 'var(--c-primary)' }}>تفکر استراتژیک</span>
-            <br />
-            و تحلیل هوشمند
-          </h1>
+        <h1 style={{
+          fontSize: 'clamp(1.7rem, 3.5vw, 2.8rem)',
+          fontWeight: 700, lineHeight: 1.3,
+          letterSpacing: '-.03em',
+          marginBottom: '1rem',
+          position: 'relative', zIndex: 2,
+          maxWidth: 680,
+        }}>
+          مدیریت یکپارچگی برند
+          <br />
+          <span style={{
+            background: 'linear-gradient(135deg, #4A8C7C 0%, #2E6B5E 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}>با تفکر استراتژیک</span>
+          {' '}و تحلیل هوشمند
+        </h1>
 
-          <p style={{
-            fontSize: '1.15rem', fontWeight: 300,
-            color: 'var(--c-text-muted)',
-            maxWidth: 520, lineHeight: 1.75,
-            marginBottom: '3rem',
-          }}>
-            رس | آژانس هوشمند برندینگ — ترکیب دقیق تحلیل داده
-            و درک فرهنگی بازار ایران برای ساخت برندهایی که ماندگار می‌مانند.
-          </p>
+        <p style={{
+          fontSize: '.88rem',
+          color: 'rgba(255,255,255,.4)',
+          lineHeight: 1.85, maxWidth: 400,
+          marginBottom: '2rem',
+          position: 'relative', zIndex: 2,
+        }}>
+          ترکیب دقیق تحلیل داده و درک فرهنگی بازار ایران
+          برای ساخت برندهایی که ماندگار می‌مانند.
+        </p>
 
+        <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 500 }}>
           <HeroForm />
+        </div>
 
-          <div style={{
-            display: 'flex', alignItems: 'center',
-            gap: '2rem', marginTop: '3rem', flexWrap: 'wrap',
-          }}>
-            {[
-              { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',          label: 'تحلیل داده‌محور' },
-              { icon: 'M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zM2 12h20',      label: 'درک بازار ایران' },
-              { icon: 'M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3', label: 'خروجی‌های اجرایی' },
-            ].map(item => (
-              <div key={item.label} style={{
-                display: 'flex', alignItems: 'center', gap: '.5rem',
-                fontSize: '.8rem', color: 'var(--c-text-muted)',
-              }}>
-                <div style={{
-                  width: 28, height: 28,
-                  background: 'var(--c-primary-bg)',
-                  borderRadius: '50%',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24"
-                    fill="none" stroke="var(--c-primary)" strokeWidth="2">
-                    <path d={item.icon}/>
-                  </svg>
-                </div>
-                {item.label}
-              </div>
-            ))}
-          </div>
+        <div style={{
+          position: 'absolute', bottom: '1.5rem', left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.35rem',
+          color: 'rgba(255,255,255,.12)', fontSize: '.58rem',
+        }}>
+          <div style={{ width: 1, height: 28, background: 'linear-gradient(to bottom, rgba(255,255,255,.12), transparent)' }} />
+          پایین
         </div>
       </section>
 
-      {/* ── Marquee ── */}
-      <MarqueeSection />
-
-      {/* ── Advantage ── */}
-      <AdvantageSection />
-
-      {/* ── Services ── */}
       <ServicesSection />
-
-      {/* ── Portfolio ── */}
+      <MarqueeSection />
+      <AdvantageSection />
       <PortfolioSection />
-
-      {/* ── Process ── */}
       <ProcessSection />
-
-      {/* ── CTA ── */}
       <CTASection />
-    </>
+
+    </main>
   )
 }

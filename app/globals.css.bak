@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════
+   DARK — default
+══════════════════════════════ */
+:root,
+[data-theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"] {
+  --c-bg:          #0C0F0E;
+  --c-surface:     #111714;
+  --c-surface-2:   #161C19;
+  --c-border:      rgba(255,255,255,.08);
+  --c-border-dark: rgba(255,255,255,.13);
+  --c-text:        #EEEDEA;
+  --c-text-muted:  rgba(255,255,255,.42);
+  --c-text-light:  rgba(255,255,255,.22);
+  --c-primary:     #2E6B5E;
+  --c-primary-dk:  #1F4D43;
+  --c-primary-lt:  #4A8C7C;
+  --c-primary-bg:  rgba(46,107,94,.18);
+  --c-accent:      #C8A96E;
+  --r-sm:  6px; --r-md: 12px; --r-lg: 20px; --r-xl: 32px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.35);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.45);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,.55);
+  --header-bg: rgba(12,15,14,.88);
+  --font: 'Vazirmatn', 'Tahoma', sans-serif;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ══════════════════════════════
+   LIGHT
+══════════════════════════════ */
+[data-theme="light"],
+html[data-theme="light"],
+body[data-theme="light"] {
+  --c-bg:          #F7F6F3;
+  --c-surface:     #FFFFFF;
+  --c-surface-2:   #F0EFEA;
+  --c-border:      #E2E0D8;
+  --c-border-dark: #C8C5BC;
+  --c-text:        #1A1916;
+  --c-text-muted:  #6B6860;
+  --c-text-light:  #9C9A94;
+  --c-primary:     #2E6B5E;
+  --c-primary-dk:  #1F4D43;
+  --c-primary-lt:  #2E6B5E;
+  --c-primary-bg:  #EBF2F0;
+  --c-accent:      #C8A96E;
+  --shadow-sm: 0 1px 3px rgba(26,25,22,.06);
+  --shadow-md: 0 4px 16px rgba(26,25,22,.08);
+  --shadow-lg: 0 12px 40px rgba(26,25,22,.1);
+  --header-bg: rgba(247,246,243,.92);
+}
+
+/* ══════════════════════════════
+   BASE
+══════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font);
+  font-weight: 300;
+  line-height: 1.7;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background .35s ease, color .35s ease;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* PortfolioSection hardcode override */
+[data-theme="light"] .portfolio-dark {
+  background: #1A1916 !important;
+}
+
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: .1s; }
+.reveal-d2 { transition-delay: .2s; }
+.reveal-d3 { transition-delay: .3s; }
+.reveal-d4 { transition-delay: .4s; }
+
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.4; transform:scale(.85); }
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+@keyframes spin  { to{transform:rotate(360deg)} }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .services-grid { grid-template-columns: 1fr !important; }
+  .services-header { flex-direction: column !important; align-items: flex-start !important; }
+  .nav-links { display: none !important; }
+  .nav-actions-desktop { display: none !important; }
+  .hamburger { display: flex !important; }
+  .mobile-cta { display: flex !important; }
+  .hero-image { height: 220px !important; }
+  .section-pad { padding: 4rem 0 !important; }
+  .advantage-grid { grid-template-columns: 1fr !important; }
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+  .process-grid { grid-template-columns: 1fr 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .cta-section { padding: 3rem 1.25rem !important; }
+}
+
+@media (min-width: 769px) {
+  .hamburger { display: none !important; }
+  .mobile-menu { display: none !important; }
+  .show-mobile-only { display: none !important; }
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (min-width: 1025px) {
+  .services-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .advantage-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  .portfolio-grid { grid-template-columns: repeat(3, 1fr) !important; }
+}

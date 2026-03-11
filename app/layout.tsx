@@ -1,24 +1,32 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import { ThemeProvider } from '../lib/theme'
+import Header from '../components/layout/Header'
+import Footer from '../components/layout/Footer'
 
 export const metadata: Metadata = {
   title: 'ROS | آژانس هوشمند برندینگ',
-  description: 'مدیریت یکپارچگی برند با تفکر استراتژیک و تحلیل هوشمند',
+  description: 'آژانس هوشمند برندینگ — ترکیب دقیق تحلیل داده و درک فرهنگی بازار ایران',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" data-theme="dark">
+      <head>
+        {/* prevent flash — set dark before paint */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            document.documentElement.setAttribute('data-theme','dark');
+            document.documentElement.style.background='#0C0F0E';
+          })();
+        `}} />
+      </head>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
