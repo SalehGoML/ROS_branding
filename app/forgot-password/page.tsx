@@ -13,8 +13,13 @@ export default function ForgotPasswordPage() {
     setLoading(true)
     setError('')
     try {
-      // TODO: connect to reset password API
-      await new Promise(r => setTimeout(r, 800))
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
       setSent(true)
     } catch (err: any) {
       setError(err.message || 'خطا در ارسال')
