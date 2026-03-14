@@ -92,7 +92,7 @@ export default function SuggestPage() {
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
           { label: 'کل پیشنهادات', value: items.length },
           { label: 'انجام‌شده', value: items.filter(s => s.done).length },

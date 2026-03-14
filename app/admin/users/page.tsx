@@ -226,7 +226,7 @@ export default function AdminUsersPage() {
                   {selected === u.id && (
                     <tr key={`${u.id}-detail`}>
                       <td colSpan={8} style={{ padding: '1rem 1.5rem', background: 'rgba(46,107,94,.05)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '1rem' }}>
                           {[
                             { label: 'تاریخ عضویت', value: u.joined },
                             { label: 'ایمیل', value: u.email },

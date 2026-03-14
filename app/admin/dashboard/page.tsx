@@ -247,7 +247,7 @@ export default function AdminDashboardPage() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 180px), 1fr))",
           gap: "1rem",
           marginBottom: "1.75rem",
         }}
@@ -327,7 +327,7 @@ export default function AdminDashboardPage() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 380px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
           gap: "1.25rem",
           alignItems: "start",
         }}

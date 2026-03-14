@@ -186,7 +186,7 @@ export default function ProfilePage() {
             <label style={labelStyle}>نام کامل</label>
             <input value={form.name} onChange={e => set('name', e.target.value)} style={inputStyle} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '1rem' }}>
             <div>
               <label style={labelStyle}>ایمیل</label>
               <input value={form.email} onChange={e => set('email', e.target.value)}
@@ -227,7 +227,7 @@ export default function ProfilePage() {
             <input value={passwords.current} onChange={e => setPass('current', e.target.value)}
               type="password" style={{ ...inputStyle, direction: 'ltr' }} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '1rem' }}>
             <div>
               <label style={labelStyle}>رمز عبور جدید</label>
               <input value={passwords.next} onChange={e => setPass('next', e.target.value)}

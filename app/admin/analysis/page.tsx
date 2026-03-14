@@ -53,7 +53,7 @@ export default function AdminAnalysisPage() {
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
         {[
           { label: 'کل تحلیل‌ها', value: mockAnalyses.length, color: '#4A8C7C' },
           { label: 'در صف / خطادار', value: mockAnalyses.filter(a => a.status !== 'complete').length, color: '#FBBF24' },

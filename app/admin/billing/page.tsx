@@ -173,7 +173,7 @@ export default function AdminBillingPage() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
           gap: "1rem",
           marginBottom: "1.5rem",
         }}

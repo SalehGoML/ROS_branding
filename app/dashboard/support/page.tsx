@@ -22,7 +22,7 @@ export default function SupportPage() {
       </div>
 
       {/* Contact cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem', marginBottom: '2rem' }}>
         {[
           { icon: '📧', title: 'ایمیل', value: 'info@rosbrand.ir', href: 'mailto:info@rosbrand.ir' },
           { icon: '💬', title: 'واتساپ', value: '+98 913 494 5184', href: 'https://wa.me/989134945184' },

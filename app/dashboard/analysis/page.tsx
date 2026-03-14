@@ -94,7 +94,7 @@ export default function AnalysisPage() {
 
       {/* Summary row */}
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
         gap: '1rem', marginBottom: '2rem',
       }}>
         {items.map(ch => {

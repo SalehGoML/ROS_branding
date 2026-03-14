@@ -64,7 +64,7 @@ export default function PlanPage() {
       </div>
 
       {/* Plans */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
         {plans.map(plan => (
           <div key={plan.id} style={{
             background: plan.highlight ? 'var(--c-primary)' : 'var(--c-surface)',

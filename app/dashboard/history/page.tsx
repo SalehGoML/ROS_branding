@@ -136,7 +136,7 @@ export default function HistoryPage() {
                     marginTop: '1rem', paddingTop: '1rem',
                     borderTop: '1px solid var(--c-border)',
                   }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
                       {[
                         { label: 'شخصیت برند', value: Math.round(item.score * 0.95) },
                         { label: 'هماهنگی لحن', value: Math.round(item.score * 0.88) },
