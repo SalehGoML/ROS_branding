@@ -171,3 +171,72 @@ nav a:hover::after { width: 100%; }
 .btn-lift:active {
   transform: translateY(0) !important;
 }
+
+/* ===== GLOBAL BUTTON HOVER SYSTEM ===== */
+
+/* همه button ها */
+button:not([data-no-hover]) {
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, opacity .2s ease !important;
+}
+button:not([data-no-hover]):hover {
+  transform: translateY(-2px) !important;
+  opacity: .92 !important;
+}
+button:not([data-no-hover]):active {
+  transform: translateY(0) !important;
+}
+
+/* Primary green buttons */
+a[href][style*="background: 'var(--c-primary)'"],
+a[href][style*="background: linear-gradient(135deg, #2E6B5E"],
+.btn-primary {
+  transition: transform .2s ease, box-shadow .2s ease !important;
+}
+
+/* همه link-button ها — هر a که padding داره */
+a[href] {
+  transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+}
+
+/* Tab buttons */
+.tab-btn {
+  transition: all .2s ease !important;
+}
+.tab-btn:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* Form inputs */
+input, textarea, select {
+  transition: border-color .2s ease, box-shadow .2s ease !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--c-primary) !important;
+  box-shadow: 0 0 0 3px rgba(46,107,94,.15) !important;
+  outline: none !important;
+}
+
+/* Hero form buttons */
+.hero-cta-btn {
+  transition: transform .25s ease, box-shadow .25s ease !important;
+}
+.hero-cta-btn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 28px rgba(46,107,94,.45) !important;
+}
+.hero-cta-btn:active {
+  transform: translateY(-1px) !important;
+}
+
+/* Outline buttons */
+.btn-outline:hover {
+  background: rgba(46,107,94,.08) !important;
+  border-color: rgba(46,107,94,.4) !important;
+  color: var(--c-primary) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* All links inside sections */
+section a[href]:hover {
+  opacity: .85;
+}

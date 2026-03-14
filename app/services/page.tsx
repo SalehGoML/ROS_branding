@@ -47,7 +47,7 @@ export default function ServicesPage() {
             color: 'var(--c-primary)', marginBottom: '1.25rem',
           }}>
             <span style={{ width: 18, height: 2, background: 'var(--c-primary)', borderRadius: 2, display: 'block' }} />
-            خدمات ما
+            خدمات ROS
           </div>
           <h1 style={{
             fontSize: 'clamp(2rem, 4vw, 3.2rem)',

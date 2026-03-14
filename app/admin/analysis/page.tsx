@@ -6,7 +6,7 @@ const mockAnalyses = [
   { id: 1, user: 'علی احمدی',    brand: 'زودکس',     industry: 'تکنولوژی',    status: 'complete', score: 78, date: '۱۴۰۳/۰۹/۱۵', duration: '۳ دقیقه',  channels: ['اینستاگرام','وب‌سایت'] },
   { id: 2, user: 'سارا موسوی',   brand: 'گل‌نار',    industry: 'صنایع غذایی', status: 'complete', score: 65, date: '۱۴۰۳/۰۹/۱۵', duration: '۴ دقیقه',  channels: ['اینستاگرام'] },
   { id: 3, user: 'رضا کریمی',    brand: 'تکنو پارس', industry: 'تکنولوژی',    status: 'pending',  score: 0,  date: '۱۴۰۳/۰۹/۱۵', duration: '—',        channels: ['وب‌سایت','پشتیبانی'] },
-  { id: 4, user: 'کامران نصیری', brand: 'آتیه برند', industry: 'خدمات مالی',  status: 'error',    score: 0,  date: '۱۴۰۳/۰۹/۱۴', duration: '—',        channels: ['بسته‌بندی'] },
+  { id: 4, user: 'کامران نصیری', brand: 'آتیه برند', industry: 'خدمات ROSلی',  status: 'error',    score: 0,  date: '۱۴۰۳/۰۹/۱۴', duration: '—',        channels: ['بسته‌بندی'] },
   { id: 5, user: 'نیلوفر رضایی', brand: 'نیکا',      industry: 'سلامت',       status: 'complete', score: 81, date: '۱۴۰۳/۰۹/۱۴', duration: '۲ دقیقه',  channels: ['اینستاگرام','وب‌سایت','پشتیبانی'] },
   { id: 6, user: 'داود شریفی',   brand: 'راهکار',    industry: 'آموزش',       status: 'complete', score: 59, date: '۱۴۰۳/۰۹/۱۳', duration: '۵ دقیقه',  channels: ['وب‌سایت'] },
 ]

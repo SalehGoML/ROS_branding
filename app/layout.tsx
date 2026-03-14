@@ -5,7 +5,7 @@ import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 
 export const metadata: Metadata = {
-  title: 'ROS | آژانس هوشمند برندینگ',
+  title: 'رُس | آژانس هوشمند برندینگ',
   description: 'آژانس هوشمند برندینگ — ترکیب دقیق تحلیل داده و درک فرهنگی بازار ایران',
 }
 
@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fa" dir="rtl" data-theme="dark">
       <head>
+        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
         {/* prevent flash — set dark before paint */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
