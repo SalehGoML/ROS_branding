@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/ros-agency/backend/internal/auth"
+	"github.com/ros-agency/backend/internal/contact"
 	"github.com/ros-agency/backend/internal/config"
 	"github.com/ros-agency/backend/internal/database"
 	"github.com/ros-agency/backend/internal/middleware"
@@ -42,6 +43,17 @@ func main() {
 			authGroup.POST("/register", authHandler.Register)
 			authGroup.POST("/login", authHandler.Login)
 			authGroup.GET("/me", middleware.Auth(cfg.JWTSecret), authHandler.Me)
+		}
+		// Contact
+		contactHandler := contact.NewHandler(db)
+		v1.POST("/contact", contactHandler.Submit)
+
+		// Admin contact
+		admin := v1.Group("/admin")
+		admin.Use(middleware.Auth(cfg.JWTSecret), middleware.AdminOnly())
+		{
+			admin.GET("/contacts", contactHandler.List)
+			admin.PUT("/contacts/:id/status", contactHandler.UpdateStatus)
 		}
 	}
 
