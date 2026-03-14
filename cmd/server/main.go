@@ -9,6 +9,7 @@ import (
 	"github.com/ros-agency/backend/pkg/sms"
 	"github.com/ros-agency/backend/internal/analysis"
 	"github.com/ros-agency/backend/internal/brand"
+	"github.com/ros-agency/backend/internal/user"
 	"github.com/ros-agency/backend/internal/contact"
 	"github.com/ros-agency/backend/internal/config"
 	"github.com/ros-agency/backend/internal/database"
@@ -72,6 +73,16 @@ func main() {
 		// Contact
 		contactHandler := contact.NewHandler(db)
 		v1.POST("/contact", contactHandler.Submit)
+
+		// User profile (protected)
+		userHandler := user.NewHandler(db)
+		userGroup := v1.Group("/users")
+		userGroup.Use(middleware.Auth(cfg.JWTSecret))
+		{
+			userGroup.GET("/profile", userHandler.GetProfile)
+			userGroup.PUT("/profile", userHandler.UpdateProfile)
+			userGroup.PUT("/change-password", userHandler.ChangePassword)
+		}
 
 		// Brand (protected)
 		brandHandler := brand.NewHandler(db)
