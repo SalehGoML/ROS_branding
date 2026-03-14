@@ -23,15 +23,18 @@ export default function LoginPage() {
       return
     }
     setLoading(true)
-    await new Promise(r => setTimeout(r, 800))
-    setLoading(false)
-
-    if (method === 'phone' && step === 'credentials') {
-      setStep('otp')
-      return
+    setError('')
+    try {
+      const { authAPI } = await import('@/lib/api')
+      const res = await authAPI.login({ email: form.identifier, password: form.password })
+      localStorage.setItem('ros_token', res.token)
+      localStorage.setItem('ros_user', JSON.stringify(res.user))
+      router.push('/dashboard')
+    } catch (err: any) {
+      setError(err.message || 'ایمیل یا رمز عبور اشتباه است')
+    } finally {
+      setLoading(false)
     }
-    // TODO: connect to Go API POST /api/auth/login
-    router.push('/dashboard')
   }
 
   const inputStyle = {

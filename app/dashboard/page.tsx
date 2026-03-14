@@ -1,19 +1,9 @@
 'use client'
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import type { Brand, ChannelScore } from '@/lib/api'
 
-// Mock data — بعداً از Go API میاد
-const mockBrand = {
-  name: 'زودکس',
-  hasStrategy: true,
-  lastAnalysis: '۵ روز پیش',
-  score: 78,
-  personality: ['نوآور', 'قابل اعتماد', 'پویا'],
-  values: ['کیفیت', 'صداقت', 'مشتری‌محوری'],
-  tone: 'حرفه‌ای و دوستانه',
-  lastUpdate: '۱۴۰۳/۰۹/۱۵',
-}
+// brand data از API میاد
 
 const channels = [
   { name: 'اینستاگرام', personality: 82, tone: 75, values: 68, status: 'good', lastUpdate: '۲ روز پیش', connected: true },
@@ -74,7 +64,25 @@ function ScoreBar({ value, color }: { value: number; color: string }) {
 export default function DashboardPage() {
   const [analyzing, setAnalyzing] = useState(false)
   const [showModal, setShowModal] = useState(false)
-  const hasStrategy = mockBrand.hasStrategy
+  const [brand, setBrand] = useState<Brand | null>(null)
+  const [scores, setScores] = useState<ChannelScore[]>([])
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const { brandAPI, analysisAPI } = await import('@/lib/api')
+        const b = await brandAPI.get()
+        setBrand(b)
+        const s = await analysisAPI.getScores(b.id)
+        setScores(s)
+      } catch {
+        // کاربر برند ندارد یا لاگین نیست
+      }
+    }
+    loadData()
+  }, [])
+
+  const hasStrategy = brand?.has_strategy ?? false
 
   async function handleReanalyze() {
     setShowModal(true)
@@ -135,10 +143,10 @@ export default function DashboardPage() {
             fontSize: '1.6rem', fontWeight: 700,
             letterSpacing: '-.02em', marginBottom: '.25rem',
           }}>
-            {mockBrand.name}
+            {brand?.name ?? 'برند شما'}
           </h1>
           <div style={{ fontSize: '.82rem', color: 'var(--c-text-muted)' }}>
-            آخرین تحلیل: {mockBrand.lastAnalysis}
+            آخرین تحلیل: {brand ? 'اخیراً' : '—'}
           </div>
         </div>
         <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
@@ -254,14 +262,14 @@ export default function DashboardPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
               <h2 style={{ fontSize: '1rem', fontWeight: 700 }}>خلاصه برند</h2>
               <div style={{ fontSize: '.72rem', color: 'var(--c-text-light)' }}>
-                به‌روزرسانی: {mockBrand.lastUpdate}
+                به‌روزرسانی: {brand?.created_at?.slice(0,10) ?? '—'}
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
               <div>
                 <div style={{ fontSize: '.72rem', color: 'var(--c-text-light)', marginBottom: '.4rem' }}>شخصیت برند</div>
                 <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap' }}>
-                  {mockBrand.personality.map(p => (
+                  {(brand?.personality ?? []).map(p => (
                     <span key={p} style={{
                       fontSize: '.72rem', padding: '.2rem .6rem',
                       background: 'var(--c-primary-bg)', color: 'var(--c-primary)',
@@ -273,7 +281,7 @@ export default function DashboardPage() {
               <div>
                 <div style={{ fontSize: '.72rem', color: 'var(--c-text-light)', marginBottom: '.4rem' }}>ارزش‌های برند</div>
                 <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap' }}>
-                  {mockBrand.values.map(v => (
+                  {(brand?.values ?? []).map(v => (
                     <span key={v} style={{
                       fontSize: '.72rem', padding: '.2rem .6rem',
                       background: 'var(--c-surface-2)', color: 'var(--c-text-muted)',
@@ -284,7 +292,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <div style={{ fontSize: '.72rem', color: 'var(--c-text-light)', marginBottom: '.4rem' }}>لحن برند</div>
-                <div style={{ fontSize: '.85rem', fontWeight: 500 }}>{mockBrand.tone}</div>
+                <div style={{ fontSize: '.85rem', fontWeight: 500 }}>{brand?.tone ?? '—'}</div>
               </div>
             </div>
             <Link href="/dashboard/brand" style={{
@@ -446,7 +454,7 @@ export default function DashboardPage() {
               letterSpacing: '-.04em', lineHeight: 1,
               marginBottom: '.5rem',
             }}>
-              {mockBrand.score}
+              {brand?.score ?? 0}
             </div>
             <div style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.7)' }}>از ۱۰۰</div>
             <div style={{

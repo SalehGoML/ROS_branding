@@ -26,10 +26,22 @@ export default function RegisterPage() {
       return
     }
     setLoading(true)
-    // TODO: connect to Go API POST /api/auth/register
-    await new Promise(r => setTimeout(r, 1000))
-    setLoading(false)
-    router.push('/onboarding/brand-info')
+    setError('')
+    try {
+      const { authAPI } = await import('@/lib/api')
+      const res = await authAPI.register({
+        email: form.identifier,
+        password: form.password,
+        full_name: form.identifier.split('@')[0],
+      })
+      localStorage.setItem('ros_token', res.token)
+      localStorage.setItem('ros_user', JSON.stringify(res.user))
+      router.push('/onboarding/brand-info')
+    } catch (err: any) {
+      setError(err.message || 'خطا در ثبت‌نام')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const inputStyle = {
