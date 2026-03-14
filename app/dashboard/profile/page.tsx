@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function ProfilePage() {
   const [form, setForm] = useState({
@@ -18,10 +18,33 @@ export default function ProfilePage() {
   function set(k: string, v: string) { setForm(f => ({ ...f, [k]: v })) }
   function setPass(k: string, v: string) { setPasswords(p => ({ ...p, [k]: v })) }
 
+  useEffect(() => {
+    async function load() {
+      try {
+        const { authAPI } = await import('@/lib/api')
+        const user = await authAPI.me()
+        setForm(f => ({ ...f, name: user.full_name || '', email: user.email || '', phone: user.phone || '' }))
+      } catch {}
+    }
+    load()
+  }, [])
+
   async function handleSave(section: string) {
-    await new Promise(r => setTimeout(r, 600))
-    setSaved(section)
-    setTimeout(() => setSaved(''), 2500)
+    try {
+      if (section === 'info') {
+        const { userAPI } = await import('@/lib/api')
+        await userAPI.updateProfile({ full_name: form.name, phone: form.phone })
+      } else if (section === 'password') {
+        if (passwords.next !== passwords.confirm) { alert('رمزهای جدید یکسان نیستند'); return }
+        const { userAPI } = await import('@/lib/api')
+        await userAPI.changePassword({ current_password: passwords.current, new_password: passwords.next })
+        setPasswords({ current: '', next: '', confirm: '' })
+      }
+      setSaved(section)
+      setTimeout(() => setSaved(''), 2500)
+    } catch (err: any) {
+      alert(err.message || 'خطا در ذخیره')
+    }
   }
 
   function handleLogo(e: React.ChangeEvent<HTMLInputElement>) {

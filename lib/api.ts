@@ -61,6 +61,15 @@ export const analysisAPI = {
     request<ChannelScore[]>(`/analyses/brand/${brandId}/scores`),
 }
 
+// User
+export const userAPI = {
+  getProfile: () => request<User>('/users/profile'),
+  updateProfile: (body: { full_name: string; phone: string }) =>
+    request<{ message: string }>('/users/profile', { method: 'PUT', body: JSON.stringify(body) }),
+  changePassword: (body: { current_password: string; new_password: string }) =>
+    request<{ message: string }>('/users/change-password', { method: 'PUT', body: JSON.stringify(body) }),
+}
+
 // Contact
 export const contactAPI = {
   submit: (body: ContactForm) =>
