@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/ros-agency/backend/internal/auth"
+	"github.com/ros-agency/backend/internal/analysis"
 	"github.com/ros-agency/backend/internal/brand"
 	"github.com/ros-agency/backend/internal/contact"
 	"github.com/ros-agency/backend/internal/config"
@@ -58,6 +59,16 @@ func main() {
 			brandGroup.GET("/me", brandHandler.Get)
 			brandGroup.PUT("/:id", brandHandler.Update)
 			brandGroup.PUT("/:id/phase", brandHandler.UpdatePhase)
+		}
+
+		// Analysis (protected)
+		analysisHandler := analysis.NewHandler(db)
+		analysisGroup := v1.Group("/analyses")
+		analysisGroup.Use(middleware.Auth(cfg.JWTSecret))
+		{
+			analysisGroup.POST("", analysisHandler.Create)
+			analysisGroup.GET("/brand/:brand_id", analysisHandler.GetByBrand)
+			analysisGroup.GET("/brand/:brand_id/scores", analysisHandler.GetChannelScores)
 		}
 
 		// Admin contact
