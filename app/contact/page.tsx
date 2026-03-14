@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import ProjectRoadmap from '@/components/shared/ProjectRoadmap'
 
 const subjects = ['مشاوره برند', 'اطلاعات خدمات', 'همکاری', 'سوال دیگر']
 
@@ -71,7 +72,17 @@ export default function ContactPage() {
       </section>
 
       {/* Main content */}
-      <section style={{ padding: '5rem 2rem', maxWidth: 1280, margin: '0 auto' }}>
+      
+      <section style={{ padding: '2.5rem 2rem', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '1.5rem' }}>
+            <div style={{ width: 3, height: 16, background: 'linear-gradient(to bottom, #7dcfbe, #2E6B5E)', borderRadius: 2 }} />
+            <span style={{ fontSize: '.72rem', fontWeight: 700, letterSpacing: '.15em', color: 'rgba(74,140,124,.6)', textTransform: 'uppercase' as const }}>فرآیند همکاری</span>
+          </div>
+          <ProjectRoadmap mode="compact" />
+        </div>
+      </section>
+<section style={{ padding: '5rem 2rem', maxWidth: 1280, margin: '0 auto' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ProjectRoadmap from '@/components/shared/ProjectRoadmap'
 
 const categories = [
   {
@@ -67,6 +68,22 @@ export default function ServicesPage() {
       </section>
 
       {/* Categories */}
+      {/* Roadmap */}
+      <section style={{ padding: 'clamp(4rem,8vw,7rem) 2rem', background: 'var(--c-surface)', borderTop: '1px solid var(--c-border)', borderBottom: '1px solid var(--c-border)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.75rem', marginBottom: '1.25rem' }}>
+              <div style={{ width: 28, height: 1, background: 'rgba(74,140,124,.4)' }} />
+              <span style={{ fontSize: '.62rem', fontWeight: 700, letterSpacing: '.2em', color: 'rgba(74,140,124,.6)', textTransform: 'uppercase' as const }}>فرآیند پروژه</span>
+              <div style={{ width: 28, height: 1, background: 'rgba(74,140,124,.4)' }} />
+            </div>
+            <h2 style={{ fontSize: 'clamp(1.8rem,3.5vw,2.6rem)', fontWeight: 900, letterSpacing: '-.04em', margin: '0 0 1rem' }}>از تشخیص تا بهبود مستمر</h2>
+            <p style={{ color: 'rgba(255,255,255,.3)', fontSize: '.88rem', maxWidth: 480, margin: '0 auto', lineHeight: 1.8 }}>۷ فاز مشخص، هر فاز با خروجی‌های قابل تحویل و مایلستون تأیید</p>
+          </div>
+          <ProjectRoadmap mode="full" />
+        </div>
+      </section>
+
       <section style={{ padding: '5rem 2rem', maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {categories.map((cat) => (
