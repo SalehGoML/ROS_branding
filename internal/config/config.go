@@ -11,6 +11,13 @@ type Config struct {
 	JWTSecret   string
 	Env         string
 	FrontendURL string
+	SMTPHost    string
+	SMTPPort    int
+	SMTPUser    string
+	SMTPPass    string
+	SMTPFrom        string
+	SMSIRApiKey string
+	SMSIRLineNumber string
 }
 
 func Load() *Config {
@@ -21,6 +28,13 @@ func Load() *Config {
 		JWTSecret:   getEnv("JWT_SECRET", "ros-secret-key-change-in-production"),
 		Env:         getEnv("ENV", "development"),
 		FrontendURL: getEnv("FRONTEND_URL", "http://localhost:3000"),
+		SMTPHost:    getEnv("SMTP_HOST", "smtp.gmail.com"),
+		SMTPPort:    587,
+		SMTPUser:    getEnv("SMTP_USER", ""),
+		SMTPPass:    getEnv("SMTP_PASS", ""),
+		SMTPFrom:        getEnv("SMTP_FROM", ""),
+		SMSIRApiKey: getEnv("SMSIR_API_KEY", ""),
+		SMSIRLineNumber: getEnv("SMSIR_LINE_NUMBER", ""),
 	}
 }
 

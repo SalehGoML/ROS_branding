@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/ros-agency/backend/internal/auth"
+	"github.com/ros-agency/backend/pkg/sms"
 	"github.com/ros-agency/backend/internal/analysis"
 	"github.com/ros-agency/backend/internal/brand"
 	"github.com/ros-agency/backend/internal/contact"
@@ -21,6 +22,12 @@ func main() {
 	}
 
 	db := database.Connect(cfg.DatabaseURL)
+
+	// SMS service
+	var smsService *sms.Service
+	if cfg.SMSIRApiKey != "" {
+		smsService = sms.NewService(cfg.SMSIRApiKey, cfg.SMSIRLineNumber)
+	}
 	database.RunMigrations(db)
 
 	r := gin.Default()
@@ -39,12 +46,14 @@ func main() {
 	v1 := r.Group("/api/v1")
 	{
 		// Auth
-		authHandler := auth.NewHandler(db, cfg.JWTSecret)
+		authHandler := auth.NewHandler(db, cfg.JWTSecret, smsService)
 		authGroup := v1.Group("/auth")
 		{
 			authGroup.POST("/register", authHandler.Register)
 			authGroup.POST("/login", authHandler.Login)
 			authGroup.GET("/me", middleware.Auth(cfg.JWTSecret), authHandler.Me)
+			authGroup.POST("/otp/send", authHandler.SendOTP)
+			authGroup.POST("/otp/verify", authHandler.VerifyOTP)
 		}
 		// Contact
 		contactHandler := contact.NewHandler(db)

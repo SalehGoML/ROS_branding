@@ -9,15 +9,17 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	jwtpkg "github.com/ros-agency/backend/pkg/jwt"
 	"github.com/ros-agency/backend/internal/models"
+	"github.com/ros-agency/backend/pkg/sms"
 )
 
 type Handler struct {
 	db        *sqlx.DB
 	jwtSecret string
+	sms       *sms.Service
 }
 
-func NewHandler(db *sqlx.DB, jwtSecret string) *Handler {
-	return &Handler{db: db, jwtSecret: jwtSecret}
+func NewHandler(db *sqlx.DB, jwtSecret string, smsService *sms.Service) *Handler {
+	return &Handler{db: db, jwtSecret: jwtSecret, sms: smsService}
 }
 
 func (h *Handler) Register(c *gin.Context) {
