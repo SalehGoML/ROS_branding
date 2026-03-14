@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/ros-agency/backend/internal/auth"
+	"github.com/ros-agency/backend/pkg/email"
 	"github.com/ros-agency/backend/pkg/sms"
 	"github.com/ros-agency/backend/internal/analysis"
 	"github.com/ros-agency/backend/internal/brand"
@@ -28,6 +29,17 @@ func main() {
 	if cfg.SMSIRApiKey != "" {
 		smsService = sms.NewService(cfg.SMSIRApiKey, cfg.SMSIRLineNumber)
 	}
+
+	var emailService *email.Service
+	if cfg.SMTPUser != "" {
+		emailService = email.NewService(email.Config{
+			Host:     cfg.SMTPHost,
+			Port:     cfg.SMTPPort,
+			Username: cfg.SMTPUser,
+			Password: cfg.SMTPPass,
+			From:     cfg.SMTPFrom,
+		})
+	}
 	database.RunMigrations(db)
 
 	r := gin.Default()
@@ -46,7 +58,7 @@ func main() {
 	v1 := r.Group("/api/v1")
 	{
 		// Auth
-		authHandler := auth.NewHandler(db, cfg.JWTSecret, smsService)
+		authHandler := auth.NewHandler(db, cfg.JWTSecret, cfg.FrontendURL, smsService, emailService)
 		authGroup := v1.Group("/auth")
 		{
 			authGroup.POST("/register", authHandler.Register)
@@ -54,6 +66,8 @@ func main() {
 			authGroup.GET("/me", middleware.Auth(cfg.JWTSecret), authHandler.Me)
 			authGroup.POST("/otp/send", authHandler.SendOTP)
 			authGroup.POST("/otp/verify", authHandler.VerifyOTP)
+			authGroup.POST("/forgot-password", authHandler.ForgotPassword)
+			authGroup.POST("/reset-password", authHandler.ResetPassword)
 		}
 		// Contact
 		contactHandler := contact.NewHandler(db)
