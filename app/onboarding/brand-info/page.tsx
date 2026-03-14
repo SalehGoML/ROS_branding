@@ -33,8 +33,19 @@ export default function BrandInfoPage() {
   async function handleSubmit() {
     if (!form.brandName || !form.industry || !form.hasStrategy) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setLoading(false);
+    try {
+      const { brandAPI } = await import('@/lib/api')
+      await brandAPI.create({
+        name: form.brandName,
+        industry: form.industry,
+        description: '',
+        has_strategy: form.hasStrategy === 'yes',
+      } as any)
+    } catch {
+      // برند قبلاً ساخته شده یا خطا — ادامه بده
+    } finally {
+      setLoading(false);
+    }
     if (form.hasStrategy === "yes") {
       router.push("/dashboard");
     } else {
