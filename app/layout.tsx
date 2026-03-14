@@ -1,4 +1,5 @@
 import ScrollToHash from '@/components/shared/ScrollToHash'
+import AuthGuard from '@/components/shared/AuthGuard'
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from '../lib/theme'
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <Header />
           <ScrollToHash />
-        {children}
+          <AuthGuard>{children}</AuthGuard>
           <Footer />
         </ThemeProvider>
       </body>
