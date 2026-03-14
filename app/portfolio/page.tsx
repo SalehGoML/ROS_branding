@@ -124,11 +124,10 @@ function EndToEnd() {
       </div>
       <span style={{
         fontSize: '.75rem', fontWeight: 900,
-        letterSpacing: '.3em',
+        letterSpacing: h ? '.38em' : '.3em',
         color: h ? 'var(--c-primary)' : 'rgba(46,107,94,.7)',
         transition: 'color .3s ease, letter-spacing .3s ease',
         textTransform: 'uppercase' as const,
-        letterSpacing: h ? '.38em' : '.3em',
       }}>End to End</span>
       <div style={{
         position: 'absolute', inset: 0,

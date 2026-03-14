@@ -84,7 +84,7 @@ export default function AboutPage() {
       </section>
 
       {/* Philosophy */}
-      <section style={{ padding: 'clamp(4rem, 8vw, 7rem) 2rem', position: 'relative', overflow: 'hidden' }}>
+      <section id="philosophy" style={{ padding: 'clamp(4rem, 8vw, 7rem) 2rem', position: 'relative', overflow: 'hidden' }}>
         {/* bg glow */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 400, background: 'radial-gradient(ellipse, rgba(74,140,124,.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
@@ -287,7 +287,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section style={{ padding: 'clamp(5rem, 9vw, 8rem) 2rem', background: '#0C0F0E', position: 'relative', overflow: 'hidden' }}>
+      <section id="team" style={{ padding: 'clamp(5rem, 9vw, 8rem) 2rem', background: '#0C0F0E', position: 'relative', overflow: 'hidden' }}>
         <style>{`
           .tc { transition: all .4s cubic-bezier(.16,1,.3,1); }
           .tc:hover { transform: translateY(-8px) !important; }
@@ -385,7 +385,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* Values */}
-      <section style={{ padding: 'clamp(5rem, 9vw, 8rem) 2rem', background: 'var(--c-surface)', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,.05)', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
+      <section id="values" style={{ padding: 'clamp(5rem, 9vw, 8rem) 2rem', background: 'var(--c-surface)', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,.05)', borderBottom: '1px solid rgba(255,255,255,.05)' }}>
         <style>{`.val-card { transition: all .35s cubic-bezier(.16,1,.3,1); } .val-card:hover { transform: translateY(-4px); border-color: rgba(74,140,124,.3) !important; background: rgba(74,140,124,.05) !important; } .val-card:hover .val-num { background: rgba(74,140,124,.2) !important; color: #7dcfbe !important; }`}</style>
 
         {/* bg */}

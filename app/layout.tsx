@@ -1,3 +1,4 @@
+import ScrollToHash from '@/components/shared/ScrollToHash'
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from '../lib/theme'
@@ -25,7 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <Header />
-          {children}
+          <ScrollToHash />
+        {children}
           <Footer />
         </ThemeProvider>
       </body>
