@@ -205,7 +205,7 @@ export default function DashboardPage() {
 
       {/* Progress bar row */}
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
         gap: '1rem', marginBottom: '2rem',
       }}>
         {[
@@ -239,7 +239,7 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '1.5rem', alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '1.5rem', alignItems: 'start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
           {/* Brand Snapshot */}
@@ -257,7 +257,7 @@ export default function DashboardPage() {
                 به‌روزرسانی: {mockBrand.lastUpdate}
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1rem' }}>
               <div>
                 <div style={{ fontSize: '.72rem', color: 'var(--c-text-light)', marginBottom: '.4rem' }}>شخصیت برند</div>
                 <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap' }}>
