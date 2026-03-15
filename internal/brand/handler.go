@@ -3,6 +3,7 @@ package brand
 import (
 	"net/http"
 	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
@@ -35,6 +36,7 @@ func (h *Handler) Create(c *gin.Context) {
 		Personality: req.Personality,
 		Values:      req.Values,
 		Tone:        req.Tone,
+		HasStrategy: req.HasStrategy,
 		Phase:       0,
 		Score:       0,
 		CreatedAt:   time.Now(),
@@ -77,9 +79,8 @@ func (h *Handler) Update(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	_, err := h.db.Exec(`UPDATE brands SET name=$1,industry=$2,description=$3,tone=$4,updated_at=$5
-		WHERE id=$6 AND user_id=$7`,
-		req.Name, req.Industry, req.Description, req.Tone, time.Now(), id, userID)
+	_, err := h.db.Exec(`UPDATE brands SET name=$1,industry=$2,description=$3,tone=$4,has_strategy=$5,updated_at=$6 WHERE id=$7 AND user_id=$8`,
+		req.Name, req.Industry, req.Description, req.Tone, req.HasStrategy, time.Now(), id, userID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در بروزرسانی"})
 		return

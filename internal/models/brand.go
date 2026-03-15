@@ -19,6 +19,7 @@ type Brand struct {
 }
 
 type BrandCreateRequest struct {
+	HasStrategy bool     `json:"has_strategy"`
 	Name        string   `json:"name" binding:"required"`
 	Industry    string   `json:"industry" binding:"required"`
 	Description string   `json:"description"`
