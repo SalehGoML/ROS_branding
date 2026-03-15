@@ -39,8 +39,8 @@ function FeaturedCard({ a, large }: { a: typeof articles[0]; large?: boolean }) 
         onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
         style={{
           height: '100%', display: 'flex', flexDirection: 'column',
-          background: h ? 'rgba(255,255,255,.035)' : 'rgba(255,255,255,.02)',
-          border: `1px solid ${h ? color + '50' : 'rgba(255,255,255,.07)'}`,
+          background: h ? 'var(--c-surface)' : 'var(--c-surface)',
+          border: `1px solid ${h ? color + '50' : 'var(--c-border)'}`,
           borderRadius: 20, overflow: 'hidden',
           transform: h ? 'translateY(-4px)' : 'translateY(0)',
           boxShadow: h ? `0 20px 50px rgba(0,0,0,.4), 0 0 0 1px ${color}25` : 'none',
@@ -51,7 +51,7 @@ function FeaturedCard({ a, large }: { a: typeof articles[0]; large?: boolean }) 
         <div style={{ height: 3, background: `linear-gradient(to right, ${color}, ${color}60)`, opacity: h ? 1 : 0.4, transition: 'opacity .3s ease' }} />
 
         {/* image placeholder */}
-        <div style={{ background: `linear-gradient(135deg, rgba(15,20,18,1) 0%, ${color}15 100%)`, height: large ? 220 : 140, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative' }}>
+        <div style={{ background: `linear-gradient(135deg, var(--c-bg-rgb, 15, 20, 18) 0%, ${color}15 100%)`, height: large ? 220 : 140, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative' }}>
           <ArticleIcon color={color} />
           <div style={{ position: 'absolute', top: 12, right: 12 }}>
             <span style={{ fontSize: '.58rem', fontWeight: 700, background: catBg[a.category], color, borderRadius: 100, padding: '.2rem .65rem', border: `1px solid ${color}30` }}>{a.category}</span>
@@ -59,10 +59,10 @@ function FeaturedCard({ a, large }: { a: typeof articles[0]; large?: boolean }) 
         </div>
 
         <div style={{ padding: large ? '1.75rem' : '1.25rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-          <h3 style={{ fontSize: large ? '1.15rem' : '.92rem', fontWeight: 800, color: 'white', lineHeight: 1.5, letterSpacing: '-.02em', margin: 0 }}>{a.title}</h3>
-          {large && <p style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.38)', lineHeight: 1.8, margin: 0 }}>{a.excerpt}</p>}
+          <h3 style={{ fontSize: large ? '1.15rem' : '.92rem', fontWeight: 800, color: 'var(--c-text)', lineHeight: 1.5, letterSpacing: '-.02em', margin: 0 }}>{a.title}</h3>
+          {large && <p style={{ fontSize: '.82rem', color: 'var(--c-text-muted)', lineHeight: 1.8, margin: 0 }}>{a.excerpt}</p>}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '.75rem', borderTop: `1px solid rgba(255,255,255,.05)` }}>
-            <span style={{ fontSize: '.62rem', color: 'rgba(255,255,255,.2)' }}>{a.readTime} دقیقه · {a.date}</span>
+            <span style={{ fontSize: '.62rem', color: 'var(--c-text-light)' }}>{a.readTime} دقیقه · {a.date}</span>
             <span style={{ fontSize: '.7rem', fontWeight: 600, color, display: 'flex', alignItems: 'center', gap: '.3rem', opacity: h ? 1 : 0.6, transition: 'opacity .3s' }}>
               ادامه مطلب
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -83,8 +83,8 @@ function ArticleCard({ a }: { a: typeof articles[0] }) {
         onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
         style={{
           display: 'flex', gap: '1rem', padding: '1.25rem',
-          background: h ? 'rgba(255,255,255,.03)' : 'rgba(255,255,255,.015)',
-          border: `1px solid ${h ? color + '40' : 'rgba(255,255,255,.06)'}`,
+          background: h ? 'var(--c-surface)' : 'var(--c-surface)',
+          border: `1px solid ${h ? color + '40' : 'var(--c-border)'}`,
           borderRadius: 16, borderRight: `3px solid ${h ? color : color + '40'}`,
           transform: h ? 'translateX(-3px)' : 'translateX(0)',
           transition: 'all .3s cubic-bezier(.16,1,.3,1)',
@@ -94,10 +94,10 @@ function ArticleCard({ a }: { a: typeof articles[0] }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.4rem' }}>
             <span style={{ fontSize: '.58rem', fontWeight: 700, color, background: catBg[a.category], borderRadius: 100, padding: '.15rem .55rem' }}>{a.category}</span>
-            <span style={{ fontSize: '.58rem', color: 'rgba(255,255,255,.2)' }}>{a.readTime} دقیقه</span>
+            <span style={{ fontSize: '.58rem', color: 'var(--c-text-light)' }}>{a.readTime} دقیقه</span>
           </div>
           <div style={{ fontSize: '.88rem', fontWeight: 700, color: h ? 'white' : 'rgba(255,255,255,.8)', lineHeight: 1.5, letterSpacing: '-.01em', transition: 'color .3s' }}>{a.title}</div>
-          <div style={{ fontSize: '.74rem', color: 'rgba(255,255,255,.28)', marginTop: '.35rem' }}>{a.date}</div>
+          <div style={{ fontSize: '.74rem', color: 'var(--c-text-light)', marginTop: '.35rem' }}>{a.date}</div>
         </div>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" style={{ flexShrink: 0, marginTop: 4, opacity: h ? 1 : 0, transition: 'opacity .3s' }}><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       </div>
@@ -112,7 +112,7 @@ export default function MagazinePage() {
   const filtered = activecat === 'همه' ? articles.filter(a => !a.featured) : articles.filter(a => a.category === activecat)
 
   return (
-    <main style={{ background: '#0C0F0E', color: 'white', minHeight: '100vh', paddingTop: 80 }}>
+    <main style={{ background: 'var(--c-bg)', color: 'var(--c-text)', minHeight: '100vh', paddingTop: 80 }}>
       <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}`}</style>
 
       {/* Hero */}
@@ -128,7 +128,7 @@ export default function MagazinePage() {
           </div>
 
           <h1 style={{ fontSize: 'clamp(3rem,8vw,5.5rem)', fontWeight: 900, letterSpacing: '-.06em', lineHeight: .95, marginBottom: '1.5rem' }}>
-            <span style={{ color: 'white' }}>مجله </span>
+            <span style={{ color: 'var(--c-text)' }}>مجله </span>
             <span style={{ background: 'linear-gradient(135deg,#7dcfbe 0%,#4A8C7C 50%,#2E6B5E 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 40px rgba(74,140,124,.5))' }}>رُس</span>
           </h1>
 
@@ -138,7 +138,7 @@ export default function MagazinePage() {
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' as const }}>
             {[`${articles.length} مقاله تخصصی`, 'به‌روزرسانی هفتگی', 'کاملاً رایگان'].map((t, i) => (
-              <span key={t} style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontSize: '.72rem', color: 'rgba(255,255,255,.28)' }}>
+              <span key={t} style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontSize: '.72rem', color: 'var(--c-text-light)' }}>
                 <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#4A8C7C', display: 'inline-block' }} />
                 {t}
               </span>
@@ -153,7 +153,7 @@ export default function MagazinePage() {
         <div style={{ marginBottom: '5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
             <div style={{ width: 3, height: 18, background: 'linear-gradient(to bottom, #7dcfbe, #2E6B5E)', borderRadius: 2 }} />
-            <h2 style={{ fontSize: '.9rem', fontWeight: 700, color: 'white', margin: 0, letterSpacing: '-.01em' }}>مقالات ویژه</h2>
+            <h2 style={{ fontSize: '.9rem', fontWeight: 700, color: 'var(--c-text)', margin: 0, letterSpacing: '-.01em' }}>مقالات ویژه</h2>
             <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.05)' }} />
           </div>
 
@@ -167,7 +167,7 @@ export default function MagazinePage() {
                 <div key={item.label} style={{ background: 'rgba(74,140,124,.04)', border: '1px solid rgba(74,140,124,.12)', borderRadius: 16, display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem 1.25rem' }}>
                   <span style={{ fontSize: '1.2rem', color: 'rgba(74,140,124,.5)' }}>{item.icon}</span>
                   <div>
-                    <div style={{ fontSize: '1rem', fontWeight: 800, color: 'white' }}>{item.val}</div>
+                    <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--c-text)' }}>{item.val}</div>
                     <div style={{ fontSize: '.65rem', color: 'rgba(255,255,255,.3)', marginTop: '.1rem' }}>{item.label}</div>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export default function MagazinePage() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap' as const, gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <div style={{ width: 3, height: 18, background: 'linear-gradient(to bottom, #7dcfbe, #2E6B5E)', borderRadius: 2 }} />
-              <h2 style={{ fontSize: '.9rem', fontWeight: 700, color: 'white', margin: 0 }}>همه مقالات</h2>
+              <h2 style={{ fontSize: '.9rem', fontWeight: 700, color: 'var(--c-text)', margin: 0 }}>همه مقالات</h2>
             </div>
             {/* category filter */}
             <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap' as const }}>
@@ -192,8 +192,8 @@ export default function MagazinePage() {
                   <button key={cat} onClick={() => setActivecat(cat)} style={{
                     fontSize: '.65rem', fontWeight: 600, borderRadius: 100, padding: '.3rem .8rem', cursor: 'pointer',
                     background: isActive ? (color ? catBg[cat] : 'rgba(74,140,124,.15)') : 'rgba(255,255,255,.04)',
-                    border: `1px solid ${isActive ? (color || '#4A8C7C') + '50' : 'rgba(255,255,255,.08)'}`,
-                    color: isActive ? (color || '#4A8C7C') : 'rgba(255,255,255,.4)',
+                    border: `1px solid ${isActive ? (color || '#4A8C7C') + '50' : 'var(--c-border)'}`,
+                    color: isActive ? (color || '#4A8C7C') : 'var(--c-text-muted)',
                     transition: 'all .25s ease',
                   }}>{cat}</button>
                 )
@@ -208,9 +208,9 @@ export default function MagazinePage() {
 
         {/* bottom CTA */}
         <div style={{ marginTop: '5rem', padding: '3rem', background: 'linear-gradient(135deg, rgba(46,107,94,.12), rgba(74,140,124,.06))', border: '1px solid rgba(74,140,124,.2)', borderRadius: 24, textAlign: 'center' as const }}>
-          <div style={{ fontSize: '1.3rem', fontWeight: 900, letterSpacing: '-.03em', color: 'white', marginBottom: '.6rem' }}>برند خود را با رُس بسازید</div>
-          <div style={{ fontSize: '.87rem', color: 'rgba(255,255,255,.38)', marginBottom: '1.75rem', lineHeight: 1.8 }}>از مشاوره رایگان تا تحویل برندبوک کامل — همراه شما هستیم</div>
-          <Link href="/contact/request-consultation" style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', background: '#4A8C7C', color: 'white', borderRadius: 12, padding: '.85rem 2rem', fontSize: '.88rem', fontWeight: 700, textDecoration: 'none' }}>
+          <div style={{ fontSize: '1.3rem', fontWeight: 900, letterSpacing: '-.03em', color: 'var(--c-text)', marginBottom: '.6rem' }}>برند خود را با رُس بسازید</div>
+          <div style={{ fontSize: '.87rem', color: 'var(--c-text-muted)', marginBottom: '1.75rem', lineHeight: 1.8 }}>از مشاوره رایگان تا تحویل برندبوک کامل — همراه شما هستیم</div>
+          <Link href="/contact/request-consultation" style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', background: '#4A8C7C', color: 'var(--c-text)', borderRadius: 12, padding: '.85rem 2rem', fontSize: '.88rem', fontWeight: 700, textDecoration: 'none' }}>
             مشاوره رایگان ←
           </Link>
         </div>

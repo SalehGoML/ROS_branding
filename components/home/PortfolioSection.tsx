@@ -57,7 +57,7 @@ function ProjectCard({ p, index }: { p: typeof projects[0]; index: number }) {
   const [h, setH] = useState(false)
   return (
     <Link href={p.href} onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
-      style={{ display:'block', borderRadius:20, overflow:'hidden', background:'#111210', border: h ? `1px solid ${p.accent}55` : '1px solid rgba(255,255,255,.07)', textDecoration:'none', transform: h ? 'translateY(-8px)' : 'translateY(0)', boxShadow: h ? `0 24px 60px ${p.accent}44` : '0 2px 12px rgba(0,0,0,.3)', transition:'all .35s cubic-bezier(.4,0,.2,1)' }}>
+      style={{ display:'block', borderRadius:20, overflow:'hidden', background:'var(--c-surface)', border: h ? `1px solid ${p.accent}55` : '1px solid rgba(255,255,255,.07)', textDecoration:'none', transform: h ? 'translateY(-8px)' : 'translateY(0)', boxShadow: h ? `0 24px 60px ${p.accent}44` : '0 2px 12px rgba(0,0,0,.3)', transition:'all .35s cubic-bezier(.4,0,.2,1)' }}>
       <div style={{ position:'relative', height:220, overflow:'hidden' }}>
         <img src={p.img} alt={p.title} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block', transform: h ? 'scale(1.06)' : 'scale(1)', transition:'transform .5s ease', filter: h ? 'brightness(1)' : 'brightness(.85)' }} />
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 60%)' }} />
@@ -112,7 +112,7 @@ function ConnectedBadge() {
 export default function PortfolioSection() {
   return (
     <ScrollReveal>
-      <section style={{ background:'linear-gradient(180deg,#141412 0%,#0f0e0d 100%)', padding:'6rem 0', borderTop:'1px solid rgba(255,255,255,.05)', position:'relative', overflow:'hidden' }}>
+      <section style={{ background:'var(--c-bg)', padding:'6rem 0', borderTop:'1px solid rgba(255,255,255,.05)', position:'relative', overflow:'hidden' }}>
         <style>{`
           @keyframes mqScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
           @keyframes dotPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
@@ -140,8 +140,8 @@ export default function PortfolioSection() {
               <div style={{ height:1, flex:1, background:'linear-gradient(to right,rgba(74,140,124,.12),transparent)' }} />
             </div>
             <div className="mq-outer">
-              <div style={{ position:'absolute', right:0, top:0, bottom:0, width:180, background:'linear-gradient(to left,#141412,transparent)', zIndex:2, pointerEvents:'none' }} />
-              <div style={{ position:'absolute', left:0, top:0, bottom:0, width:180, background:'linear-gradient(to right,#141412,transparent)', zIndex:2, pointerEvents:'none' }} />
+              <div style={{ position:'absolute', right:0, top:0, bottom:0, width:180, background:'linear-gradient(to left,var(--c-bg),transparent)', zIndex:2, pointerEvents:'none' }} />
+              <div style={{ position:'absolute', left:0, top:0, bottom:0, width:180, background:'linear-gradient(to right,var(--c-bg),transparent)', zIndex:2, pointerEvents:'none' }} />
               <div className="mq-track">
                 {[...clients, ...clients].map((c, i) => (
                   <a key={i} href={c.url} target="_blank" rel="noopener noreferrer" className="mq-item">
