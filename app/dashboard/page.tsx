@@ -243,8 +243,8 @@ export default function DashboardPage() {
             border: '1px solid var(--c-border)',
             borderRadius: 'var(--r-xl)',
             padding: '1.75rem',
-            filter: hasStrategy ? 'none' : 'blur(3px)',
-            pointerEvents: hasStrategy ? 'auto' : 'none',
+            
+            
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
               <h2 style={{ fontSize: '1rem', fontWeight: 700 }}>خلاصه برند</h2>
@@ -297,8 +297,8 @@ export default function DashboardPage() {
             border: '1px solid var(--c-border)',
             borderRadius: 'var(--r-xl)',
             padding: '1.75rem',
-            filter: hasStrategy ? 'none' : 'blur(3px)',
-            pointerEvents: hasStrategy ? 'auto' : 'none',
+            
+            
           }}>
             <h2 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '.4rem' }}>
               تحلیل نقاط تماس
@@ -355,8 +355,8 @@ export default function DashboardPage() {
             border: '1px solid var(--c-border)',
             borderRadius: 'var(--r-xl)',
             padding: '1.75rem',
-            filter: hasStrategy ? 'none' : 'blur(3px)',
-            pointerEvents: hasStrategy ? 'auto' : 'none',
+            
+            
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
               <h2 style={{ fontSize: '1rem', fontWeight: 700 }}>روند پیشرفت برند</h2>
@@ -406,8 +406,8 @@ export default function DashboardPage() {
             borderRadius: 'var(--r-xl)',
             padding: '1.75rem',
             color: 'white', textAlign: 'center',
-            filter: hasStrategy ? 'none' : 'blur(3px)',
-            pointerEvents: hasStrategy ? 'auto' : 'none',
+            
+            
           }}>
             <div style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.7)', marginBottom: '.75rem' }}>
               نمره سلامت برند
@@ -436,8 +436,8 @@ export default function DashboardPage() {
             border: '1px solid var(--c-border)',
             borderRadius: 'var(--r-xl)',
             padding: '1.5rem',
-            filter: hasStrategy ? 'none' : 'blur(3px)',
-            pointerEvents: hasStrategy ? 'auto' : 'none',
+            
+            
           }}>
             <h3 style={{ fontSize: '.95rem', fontWeight: 700, marginBottom: '1rem' }}>
               پیشنهادنامه بهبود
