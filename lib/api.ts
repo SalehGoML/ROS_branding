@@ -143,3 +143,78 @@ export interface ContactForm {
   subject: string
   message: string
 }
+
+// ─── Admin Types ───────────────────────────────────────────
+export interface AdminStats {
+  total_users: number
+  active_users: number
+  total_analyses: number
+  avg_brand_score: number
+  ai_documents: number
+  monthly_growth: { month: string; users: number }[]
+}
+
+export interface AdminUser {
+  id: string
+  full_name: string
+  email: string
+  phone: string
+  role: string
+  is_verified: boolean
+  created_at: string
+  brand_name?: string
+  plan?: string
+  last_active?: string
+}
+
+export interface AdminContact {
+  id: string
+  name: string
+  email: string
+  subject: string
+  message: string
+  status: string
+  created_at: string
+}
+
+export interface AdminAnalysis {
+  id: string
+  brand_id: string
+  brand_name: string
+  channel: string
+  score: number
+  created_at: string
+}
+
+// ─── Admin API ─────────────────────────────────────────────
+export const adminAPI = {
+  getStats: () =>
+    request<AdminStats>('/admin/stats'),
+
+  getUsers: (params?: { page?: number; limit?: number; search?: string }) => {
+    const q = new URLSearchParams()
+    if (params?.page)   q.set('page',   String(params.page))
+    if (params?.limit)  q.set('limit',  String(params.limit))
+    if (params?.search) q.set('search', params.search)
+    return request<{ users: AdminUser[]; total: number }>(`/admin/users?${q}`)
+  },
+
+  updateUserRole: (id: string, role: 'user' | 'admin') =>
+    request<{ message: string }>(`/admin/users/${id}/role`, {
+      method: 'PUT',
+      body: JSON.stringify({ role }),
+    }),
+
+  getAnalyses: () =>
+    request<{ analyses: AdminAnalysis[]; total: number }>('/admin/analyses'),
+
+  getContacts: () =>
+    request<{ contacts: AdminContact[]; total: number }>('/admin/contacts'),
+
+  updateContactStatus: (id: string, status: 'read' | 'unread' | 'resolved') =>
+    request<{ message: string }>(`/admin/contacts/${id}/status`, {
+      method: 'PUT',
+      body: JSON.stringify({ status }),
+    }),
+}
+
