@@ -5,25 +5,7 @@ import type { Brand, ChannelScore } from '@/lib/api'
 
 // brand data از API میاد
 
-const channels = [
-  { name: 'اینستاگرام', personality: 82, tone: 75, values: 68, status: 'good', lastUpdate: '۲ روز پیش', connected: true },
-  { name: 'وب‌سایت', personality: 91, tone: 88, values: 85, status: 'good', lastUpdate: '۱ هفته پیش', connected: true },
-  { name: 'پشتیبانی', personality: 45, tone: 38, values: 52, status: 'bad', lastUpdate: null, connected: false },
-  { name: 'بسته‌بندی', personality: 65, tone: 70, values: 60, status: 'medium', lastUpdate: '۳ هفته پیش', connected: true },
-]
-
-const suggestions = [
-  { id: 1, priority: 'high', channel: 'پشتیبانی', text: 'لحن برند در پشتیبانی رسمی‌تر از حد تعریف‌شده است.' },
-  { id: 2, priority: 'medium', channel: 'اینستاگرام', text: 'انتقال ارزش‌های برند در محتوای اینستاگرام نیاز به تقویت دارد.' },
-  { id: 3, priority: 'low', channel: 'بسته‌بندی', text: 'شخصیت برند در طراحی بسته‌بندی با سند برند ۷۰٪ هماهنگ است.' },
-]
-
-const progressData = [
-  { month: 'مهر', score: 62 },
-  { month: 'آبان', score: 68 },
-  { month: 'آذر', score: 71 },
-  { month: 'دی', score: 78 },
-]
+// داده‌ها از API میان
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, { bg: string; color: string; label: string }> = {
@@ -66,6 +48,7 @@ export default function DashboardPage() {
   const [showModal, setShowModal] = useState(false)
   const [brand, setBrand] = useState<Brand | null>(null)
   const [scores, setScores] = useState<ChannelScore[]>([])
+  const [analyses, setAnalyses] = useState<import('@/lib/api').Analysis[]>([])
 
   useEffect(() => {
     async function loadData() {
@@ -73,8 +56,12 @@ export default function DashboardPage() {
         const { brandAPI, analysisAPI } = await import('@/lib/api')
         const b = await brandAPI.get()
         setBrand(b)
-        const s = await analysisAPI.getScores(b.id)
+        const [s, a] = await Promise.all([
+          analysisAPI.getScores(b.id),
+          analysisAPI.getByBrand(b.id),
+        ])
         setScores(s)
+        setAnalyses(a)
       } catch {
         // کاربر برند ندارد یا لاگین نیست
       }
@@ -321,8 +308,13 @@ export default function DashboardPage() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              {channels.map(ch => (
-                <div key={ch.name} style={{
+              {scores.length === 0 && (
+                <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--c-text-muted)', fontSize: '.85rem' }}>
+                  هنوز تحلیلی ثبت نشده است.
+                </div>
+              )}
+              {scores.map(ch => (
+                <div key={ch.channel} style={{
                   padding: '1.25rem',
                   background: 'var(--c-surface-2)',
                   border: '1px solid var(--c-border)',
@@ -330,28 +322,15 @@ export default function DashboardPage() {
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
-                      <span style={{ fontWeight: 600, fontSize: '.9rem' }}>{ch.name}</span>
+                      <span style={{ fontWeight: 600, fontSize: '.9rem' }}>{ch.channel}</span>
                       <StatusBadge status={ch.status} />
                     </div>
                     <div style={{ fontSize: '.72rem', color: 'var(--c-text-light)' }}>
-                      {ch.connected
-                        ? `آخرین به‌روزرسانی: ${ch.lastUpdate}`
-                        : (
-                          <span style={{ color: '#DC2626', display: 'flex', alignItems: 'center', gap: '.3rem' }}>
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <circle cx="12" cy="12" r="10"/>
-                              <line x1="12" y1="8" x2="12" y2="12"/>
-                              <line x1="12" y1="16" x2="12.01" y2="16"/>
-                            </svg>
-                            داده‌ای ارائه نشده
-                          </span>
-                        )
-                      }
+                      امتیاز کلی: {Math.round((ch.personality + ch.tone + ch.values) / 3)}٪
                     </div>
                   </div>
 
-                  {ch.connected ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
                         <span style={{ fontSize: '.72rem', color: 'var(--c-text-muted)', minWidth: 100 }}>شخصیت برند</span>
                         <ScoreBar value={ch.personality} color="var(--c-primary)" />
@@ -365,27 +344,6 @@ export default function DashboardPage() {
                         <ScoreBar value={ch.values} color="#8B5CF6" />
                       </div>
                     </div>
-                  ) : (
-                    <div style={{
-                      padding: '.85rem 1rem',
-                      background: '#FEF2F2',
-                      border: '1px solid #FECACA',
-                      borderRadius: 'var(--r-sm)',
-                      fontSize: '.8rem', color: '#DC2626',
-                      display: 'flex', alignItems: 'center',
-                      justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem',
-                    }}>
-                      <span>برای تحلیل دقیق {ch.name}، فایل یا لینک بارگذاری کنید.</span>
-                      <button style={{
-                        padding: '.35rem .85rem',
-                        background: '#DC2626', color: 'white',
-                        border: 'none', borderRadius: 'var(--r-sm)',
-                        fontSize: '.75rem', fontWeight: 600, cursor: 'pointer',
-                      }}>
-                        تکمیل ورودی
-                      </button>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -413,22 +371,27 @@ export default function DashboardPage() {
               </button>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem', height: 120 }}>
-              {progressData.map(d => (
-                <div key={d.month} style={{
-                  flex: 1, display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', gap: '.5rem', height: '100%', justifyContent: 'flex-end',
-                }}>
-                  <span style={{ fontSize: '.72rem', color: 'var(--c-primary)', fontWeight: 600 }}>{d.score}</span>
-                  <div style={{
-                    width: '100%',
-                    height: `${(d.score / 100) * 100}px`,
-                    background: 'var(--c-primary)',
-                    borderRadius: '4px 4px 0 0',
-                    opacity: d.month === 'دی' ? 1 : 0.5,
-                  }} />
-                  <span style={{ fontSize: '.72rem', color: 'var(--c-text-muted)' }}>{d.month}</span>
-                </div>
-              ))}
+              {analyses.length === 0
+                ? <div style={{ fontSize: '.82rem', color: 'var(--c-text-muted)', margin: 'auto' }}>داده‌ای موجود نیست</div>
+                : analyses.slice(-6).map((a, i, arr) => (
+                  <div key={a.id} style={{
+                    flex: 1, display: 'flex', flexDirection: 'column',
+                    alignItems: 'center', gap: '.5rem', height: '100%', justifyContent: 'flex-end',
+                  }}>
+                    <span style={{ fontSize: '.72rem', color: 'var(--c-primary)', fontWeight: 600 }}>{a.score}</span>
+                    <div style={{
+                      width: '100%',
+                      height: `${(a.score / 100) * 100}px`,
+                      background: 'var(--c-primary)',
+                      borderRadius: '4px 4px 0 0',
+                      opacity: i === arr.length - 1 ? 1 : 0.5,
+                    }} />
+                    <span style={{ fontSize: '.72rem', color: 'var(--c-text-muted)' }}>
+                      {new Date(a.created_at).toLocaleDateString('fa-IR', { month: 'short' })}
+                    </span>
+                  </div>
+                ))
+              }
             </div>
           </div>
 
@@ -480,29 +443,38 @@ export default function DashboardPage() {
               پیشنهادنامه بهبود
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-              {suggestions.map(s => (
-                <div key={s.id} style={{
-                  padding: '.85rem',
-                  background: 'var(--c-surface-2)',
-                  border: '1px solid var(--c-border)',
-                  borderRadius: 'var(--r-sm)',
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', marginBottom: '.4rem' }}>
-                    <span style={{
-                      fontSize: '.65rem', fontWeight: 700,
-                      padding: '.15rem .5rem', borderRadius: 100,
-                      background: s.priority === 'high' ? '#FEE2E2' : s.priority === 'medium' ? '#FEF3C7' : '#ECFDF5',
-                      color: s.priority === 'high' ? '#DC2626' : s.priority === 'medium' ? '#D97706' : '#059669',
-                    }}>
-                      {s.priority === 'high' ? 'مهم' : s.priority === 'medium' ? 'متوسط' : 'کم'}
-                    </span>
-                    <span style={{ fontSize: '.72rem', color: 'var(--c-text-light)' }}>{s.channel}</span>
-                  </div>
-                  <p style={{ fontSize: '.78rem', color: 'var(--c-text-muted)', lineHeight: 1.6, margin: 0 }}>
-                    {s.text}
-                  </p>
+              {scores.length === 0 && (
+                <div style={{ fontSize: '.82rem', color: 'var(--c-text-muted)', textAlign: 'center', padding: '1rem' }}>
+                  پس از اولین تحلیل، پیشنهادها اینجا نمایش داده می‌شود.
                 </div>
-              ))}
+              )}
+              {scores.map(s => {
+                const avg = Math.round((s.personality + s.tone + s.values) / 3)
+                const priority = avg < 50 ? 'high' : avg < 75 ? 'medium' : 'low'
+                return (
+                  <div key={s.channel} style={{
+                    padding: '.85rem',
+                    background: 'var(--c-surface-2)',
+                    border: '1px solid var(--c-border)',
+                    borderRadius: 'var(--r-sm)',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', marginBottom: '.4rem' }}>
+                      <span style={{
+                        fontSize: '.65rem', fontWeight: 700,
+                        padding: '.15rem .5rem', borderRadius: 100,
+                        background: priority === 'high' ? '#FEE2E2' : priority === 'medium' ? '#FEF3C7' : '#ECFDF5',
+                        color: priority === 'high' ? '#DC2626' : priority === 'medium' ? '#D97706' : '#059669',
+                      }}>
+                        {priority === 'high' ? 'مهم' : priority === 'medium' ? 'متوسط' : 'خوب'}
+                      </span>
+                      <span style={{ fontSize: '.72rem', color: 'var(--c-text-light)' }}>{s.channel}</span>
+                    </div>
+                    <p style={{ fontSize: '.78rem', color: 'var(--c-text-muted)', lineHeight: 1.6, margin: 0 }}>
+                      امتیاز کلی {s.channel}: {avg}٪ — شخصیت {s.personality}٪، لحن {s.tone}٪، ارزش‌ها {s.values}٪
+                    </p>
+                  </div>
+                )
+              })}
             </div>
             <button style={{
               width: '100%', marginTop: '1rem',
