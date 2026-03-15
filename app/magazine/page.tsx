@@ -47,10 +47,9 @@ function FeaturedCard({ a, large }: { a: typeof articles[0]; large?: boolean }) 
           transition: 'all .4s cubic-bezier(.16,1,.3,1)',
         }}
       >
-        {/* color bar top */}
+
         <div style={{ height: 3, background: `linear-gradient(to right, ${color}, ${color}60)`, opacity: h ? 1 : 0.4, transition: 'opacity .3s ease' }} />
 
-        {/* image placeholder */}
         <div style={{ background: `linear-gradient(135deg, var(--c-bg-rgb, 15, 20, 18) 0%, ${color}15 100%)`, height: large ? 220 : 140, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative' }}>
           <ArticleIcon color={color} />
           <div style={{ position: 'absolute', top: 12, right: 12 }}>
@@ -115,7 +114,6 @@ export default function MagazinePage() {
     <main style={{ background: 'var(--c-bg)', color: 'var(--c-text)', minHeight: '100vh', paddingTop: 80 }}>
       <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}`}</style>
 
-      {/* Hero */}
       <section style={{ padding: '5rem 1.5rem 5rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(74,140,124,.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(to right, transparent, rgba(74,140,124,.2) 30%, rgba(74,140,124,.2) 70%, transparent)' }} />
@@ -149,7 +147,6 @@ export default function MagazinePage() {
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 1.5rem 8rem' }}>
 
-        {/* Featured editorial grid */}
         <div style={{ marginBottom: '5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
             <div style={{ width: 3, height: 18, background: 'linear-gradient(to bottom, #7dcfbe, #2E6B5E)', borderRadius: 2 }} />
@@ -176,7 +173,6 @@ export default function MagazinePage() {
           </div>
         </div>
 
-        {/* filter + all articles */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap' as const, gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -206,7 +202,6 @@ export default function MagazinePage() {
           </div>
         </div>
 
-        {/* bottom CTA */}
         <div style={{ marginTop: '5rem', padding: '3rem', background: 'linear-gradient(135deg, rgba(46,107,94,.12), rgba(74,140,124,.06))', border: '1px solid rgba(74,140,124,.2)', borderRadius: 24, textAlign: 'center' as const }}>
           <div style={{ fontSize: '1.3rem', fontWeight: 900, letterSpacing: '-.03em', color: 'var(--c-text)', marginBottom: '.6rem' }}>برند خود را با رُس بسازید</div>
           <div style={{ fontSize: '.87rem', color: 'var(--c-text-muted)', marginBottom: '1.75rem', lineHeight: 1.8 }}>از مشاوره رایگان تا تحویل برندبوک کامل — همراه شما هستیم</div>

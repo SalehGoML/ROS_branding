@@ -40,7 +40,7 @@ export default function BrandInfoPage() {
         industry: form.industry,
         description: '',
         has_strategy: form.hasStrategy === 'yes',
-      } as any)
+      })
     } catch {
       // برند قبلاً ساخته شده یا خطا — ادامه بده
     } finally {

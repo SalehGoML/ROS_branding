@@ -45,7 +45,7 @@ export default function AdminDashboardPage() {
           adminAPI.getStats(),
           adminAPI.getUsers({ limit: 5 }),
         ]);
-        if (!cancelled) { setStats(s); setUsers(u.users); }
+        if (!cancelled) { setStats(s); setUsers(u?.users ?? []); }
       } catch (e: unknown) {
         if (!cancelled) setError(e instanceof Error ? e.message : "خطای سرور");
       } finally {

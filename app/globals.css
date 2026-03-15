@@ -240,3 +240,161 @@ input:focus, textarea:focus, select:focus {
 section a[href]:hover {
   opacity: .85;
 }
+
+/* ══════════════════════════════
+   LIGHT MODE OVERRIDES
+══════════════════════════════ */
+[data-theme="light"] {
+  /* hardcoded dark backgrounds */
+  --hc-bg-dark: #F7F6F3;
+  --hc-surface: #FFFFFF;
+  --hc-surface-2: #F0EFEA;
+  --hc-text: #1A1916;
+  --hc-text-muted: rgba(26,25,22,.45);
+  --hc-text-faint: rgba(26,25,22,.25);
+  --hc-border: rgba(26,25,22,.09);
+  --hc-white-overlay: rgba(26,25,22,.03);
+}
+
+/* override hardcoded dark section backgrounds */
+[data-theme="light"] section[style*="background: #0C0F0E"],
+[data-theme="light"] section[style*="background: '#0C0F0E'"],
+[data-theme="light"] section[style*="#0C0F0E"] {
+  background: var(--c-bg) !important;
+}
+[data-theme="light"] section[style*="background: #141412"],
+[data-theme="light"] section[style*="#111714"] {
+  background: var(--c-surface) !important;
+}
+
+/* white text روی light */
+[data-theme="light"] *[style*="color: white"] {
+  color: var(--c-text) !important;
+}
+[data-theme="light"] *[style*="color: 'white'"] {
+  color: var(--c-text) !important;
+}
+
+/* rgba white overlays */
+[data-theme="light"] *[style*="background: rgba(255,255,255,.02)"],
+[data-theme="light"] *[style*="background: rgba(255,255,255,.018)"],
+[data-theme="light"] *[style*="background: rgba(255,255,255,.03)"],
+[data-theme="light"] *[style*="background: rgba(255,255,255,.04)"],
+[data-theme="light"] *[style*="background: rgba(255,255,255,.05)"] {
+  background: rgba(26,25,22,.03) !important;
+}
+
+/* rgba white borders */
+[data-theme="light"] *[style*="border: 1px solid rgba(255,255,255,.06)"],
+[data-theme="light"] *[style*="border: 1px solid rgba(255,255,255,.07)"],
+[data-theme="light"] *[style*="border: 1px solid rgba(255,255,255,.08)"],
+[data-theme="light"] *[style*="border: 1px solid rgba(255,255,255,.1)"] {
+  border-color: rgba(26,25,22,.09) !important;
+}
+
+/* rgba white text */
+[data-theme="light"] *[style*="color: rgba(255,255,255,.3)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.25)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.2)"] {
+  color: rgba(26,25,22,.35) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.4)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.38)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.35)"] {
+  color: rgba(26,25,22,.5) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.6)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.5)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.45)"] {
+  color: rgba(26,25,22,.65) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.7)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.75)"] {
+  color: rgba(26,25,22,.8) !important;
+}
+
+/* داشبورد و پنل ادمین همیشه دارک بمونن */
+[data-theme="light"] .dashboard-forced-dark {
+  background: #0F1117 !important;
+  color: white !important;
+}
+
+
+/* ══════════════════════════════
+   LIGHT MODE - SPECIFIC SECTIONS
+══════════════════════════════ */
+
+/* CoursesSection & Magazine hardcoded #0C0F0E */
+[data-theme="light"] section[style*="#0C0F0E"],
+[data-theme="light"] section[style*="0C0F0E"] {
+  background: var(--c-surface) !important;
+  border-color: var(--c-border) !important;
+}
+
+/* article cards & course cards */
+[data-theme="light"] *[style*="rgba(255,255,255,.02)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.015)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.018)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.03)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.035)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.04)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.05)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.06)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.07)"],
+[data-theme="light"] *[style*="rgba(255,255,255,.08)"] {
+  background: rgba(26,25,22,.03) !important;
+}
+
+/* borders */
+[data-theme="light"] *[style*="1px solid rgba(255,255,255,.05)"],
+[data-theme="light"] *[style*="1px solid rgba(255,255,255,.06)"],
+[data-theme="light"] *[style*="1px solid rgba(255,255,255,.07)"],
+[data-theme="light"] *[style*="1px solid rgba(255,255,255,.08)"],
+[data-theme="light"] *[style*="1px solid rgba(255,255,255,.1)"],
+[data-theme="light"] *[style*="1px solid rgba(255,255,255,.12)"] {
+  border-color: rgba(26,25,22,.1) !important;
+}
+
+/* white text */
+[data-theme="light"] *[style*="color: white"],
+[data-theme="light"] *[style*="color:'white'"] {
+  color: var(--c-text) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.2)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.22)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.25)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.28)"] {
+  color: rgba(26,25,22,.3) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.35)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.38)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.4)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.42)"] {
+  color: rgba(26,25,22,.5) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.5)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.45)"] {
+  color: rgba(26,25,22,.6) !important;
+}
+[data-theme="light"] *[style*="color: rgba(255,255,255,.6)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.65)"],
+[data-theme="light"] *[style*="color: rgba(255,255,255,.7)"] {
+  color: rgba(26,25,22,.75) !important;
+}
+
+/* divider lines */
+[data-theme="light"] *[style*="background: rgba(255,255,255,.05)"][style*="height: 1"],
+[data-theme="light"] *[style*="height: 1px"][style*="rgba(255,255,255"] {
+  background: rgba(26,25,22,.1) !important;
+}
+
+/* article card image bg gradient */
+[data-theme="light"] *[style*="rgba(15,20,18"] {
+  background: linear-gradient(135deg, rgba(240,239,234,1) 0%, var(--c-surface) 100%) !important;
+}
+
+/* marquee / clients section */
+[data-theme="light"] .marquee-section,
+[data-theme="light"] *[style*="background: #0C0F0E"] {
+  background: var(--c-surface) !important;
+}

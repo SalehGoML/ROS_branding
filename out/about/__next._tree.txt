@@ -1,7 +1,7 @@
-:HL["/_next/static/chunks/f935825ab19f6575.css","style"]
+:HL["/_next/static/chunks/6db9c6b35f419696.css","style"]
 :HL["/team/saeid-maeini.jpg","image"]
 :HL["/team/amjad-amiri.jpg","image"]
 :HL["/team/mojtaba-roshani.png","image"]
 :HL["/team/abolfazl-asadi.jpg","image"]
 :HL["/team/saleh-askarzadeh.jpg","image"]
-0:{"buildId":"2O4zYqhkH6-QoQC3PUkr5","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"about","paramType":null,"paramKey":"about","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"hbJMUrSRMxJ8_QDwL6VEQ","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"about","paramType":null,"paramKey":"about","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

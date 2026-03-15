@@ -77,12 +77,12 @@ function CourseCard({ c, onClick }: { c: typeof courses[0]; onClick: () => void 
           padding: '.22rem .65rem',
         }}>
           <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#F59E0B', display: 'inline-block', boxShadow: '0 0 5px #F59E0B' }} />
-          <span style={{ fontSize: '.58rem', fontWeight: 700, letterSpacing: '.08em', color: 'rgba(255,255,255,.9)' }}>برگزار شده</span>
+          <span style={{ fontSize: '.58rem', fontWeight: 700, letterSpacing: '.08em', color: 'var(--c-text)' }}>برگزار شده</span>
         </div>
         <div style={{
           background: 'rgba(0,0,0,.5)', backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255,255,255,.08)', borderRadius: 100,
-          padding: '.22rem .65rem', fontSize: '.58rem', fontWeight: 600, color: 'rgba(255,255,255,.5)',
+          border: '1px solid var(--c-border)', borderRadius: 100,
+          padding: '.22rem .65rem', fontSize: '.58rem', fontWeight: 600, color: 'var(--c-text-muted)',
         }}>
           {c.tag}
         </div>
@@ -93,11 +93,11 @@ function CourseCard({ c, onClick }: { c: typeof courses[0]; onClick: () => void 
         <div style={{ fontSize: '.6rem', fontWeight: 600, letterSpacing: '.12em', color: 'rgba(74,140,124,.65)', marginBottom: '.45rem' }}>
           {c.images.length} تصویر
         </div>
-        <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'white', lineHeight: 1.35, letterSpacing: '-.02em', marginBottom: '.6rem' }}>
+        <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--c-text)', lineHeight: 1.35, letterSpacing: '-.02em', marginBottom: '.6rem' }}>
           {c.title}
         </div>
         <div style={{
-          fontSize: '.74rem', color: 'rgba(255,255,255,.4)', lineHeight: 1.65,
+          fontSize: '.74rem', color: 'var(--c-text-muted)', lineHeight: 1.65,
           maxHeight: hovered ? '4rem' : '0',
           overflow: 'hidden',
           opacity: hovered ? 1 : 0,
@@ -108,13 +108,13 @@ function CourseCard({ c, onClick }: { c: typeof courses[0]; onClick: () => void 
         </div>
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '.4rem',
-          background: hovered ? 'rgba(74,140,124,.2)' : 'rgba(255,255,255,.06)',
+          background: hovered ? 'rgba(74,140,124,.2)' : 'var(--c-border)',
           border: `1px solid ${hovered ? 'rgba(74,140,124,.5)' : 'rgba(255,255,255,.1)'}`,
           borderRadius: 100, padding: '.3rem .8rem',
           transition: 'all .35s ease',
         }}>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={hovered ? '#4A8C7C' : 'rgba(255,255,255,.35)'} strokeWidth="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span style={{ fontSize: '.67rem', fontWeight: 700, color: hovered ? 'rgba(74,140,124,.95)' : 'rgba(255,255,255,.35)', transition: 'color .35s ease' }}>مشاهده دوره</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={hovered ? '#4A8C7C' : 'var(--c-text-muted)'} strokeWidth="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span style={{ fontSize: '.67rem', fontWeight: 700, color: hovered ? 'rgba(74,140,124,.95)' : 'var(--c-text-muted)', transition: 'color .35s ease' }}>مشاهده دوره</span>
         </div>
       </div>
     </button>
@@ -129,23 +129,23 @@ export default function CoursesSection() {
   function closeModal() { setModal(null); document.body.style.overflow = '' }
 
   return (
-    <section style={{ background: '#0C0F0E', padding: '7rem 0', borderTop: '1px solid rgba(255,255,255,.05)' }}>
+    <section style={{ background: 'var(--c-bg)', padding: '7rem 0', borderTop: '1px solid var(--c-border)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
 
         {/* header */}
         <div style={{ marginBottom: '4rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-            <div style={{ height: 1, flex: 1, background: 'rgba(255,255,255,.05)' }} />
+            <div style={{ height: 1, flex: 1, background: 'var(--c-surface-2)' }} />
             <span style={{ fontSize: '.58rem', fontWeight: 700, letterSpacing: '.2em', color: 'rgba(74,140,124,.5)', textTransform: 'uppercase' as const }}>ROS ACADEMY</span>
-            <div style={{ height: 1, flex: 1, background: 'rgba(255,255,255,.05)' }} />
+            <div style={{ height: 1, flex: 1, background: 'var(--c-surface-2)' }} />
           </div>
 
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <h2 style={{ fontSize: 'clamp(2.5rem,5vw,4.2rem)', fontWeight: 900, letterSpacing: '-.05em', lineHeight: 1.05, margin: 0 }}>
-              <span style={{ color: 'white' }}>دوره‌های </span>
+              <span style={{ color: 'var(--c-text)' }}>دوره‌های </span>
               <span style={{ background: 'linear-gradient(135deg,#7dcfbe 0%,#4A8C7C 50%,#2E6B5E 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 0 30px rgba(74,140,124,.4))' }}>آموزشی</span>
             </h2>
-            <p style={{ fontSize: '.87rem', color: 'rgba(255,255,255,.28)', lineHeight: 1.8, maxWidth: 300, margin: 0 }}>
+            <p style={{ fontSize: '.87rem', color: 'var(--c-text-light)', lineHeight: 1.8, maxWidth: 300, margin: 0 }}>
               دوره‌هایی که تاکنون توسط آژانس رُس برگزار شده‌اند
             </p>
           </div>
@@ -160,20 +160,20 @@ export default function CoursesSection() {
       {/* modal */}
       {modal && (
         <div onClick={closeModal} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.93)', backdropFilter: 'blur(20px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
-          <div onClick={e => e.stopPropagation()} style={{ background: '#141412', border: '1px solid rgba(255,255,255,.08)', borderRadius: 24, width: '100%', maxWidth: 920, maxHeight: '90vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div onClick={e => e.stopPropagation()} style={{ background: 'var(--c-surface)', border: '1px solid var(--c-border)', borderRadius: 24, width: '100%', maxWidth: 920, maxHeight: '90vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
               <div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'white' }}>{modal.title}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--c-text)' }}>{modal.title}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginTop: '.3rem' }}>
                   <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#4A8C7C', boxShadow: '0 0 6px rgba(74,140,124,1)', display: 'inline-block' }} />
                   <span style={{ fontSize: '.65rem', fontWeight: 700, color: 'rgba(74,140,124,.8)' }}>برگزار شده</span>
-                  <span style={{ fontSize: '.65rem', color: 'rgba(255,255,255,.2)' }}>·</span>
-                  <span style={{ fontSize: '.65rem', color: 'rgba(255,255,255,.3)' }}>{modal.images.length} تصویر</span>
+                  <span style={{ fontSize: '.65rem', color: 'var(--c-text-light)' }}>·</span>
+                  <span style={{ fontSize: '.65rem', color: 'var(--c-text-light)' }}>{modal.images.length} تصویر</span>
                 </div>
               </div>
-              <button onClick={closeModal} style={{ background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 8, padding: '.4rem .75rem', color: 'rgba(255,255,255,.5)', cursor: 'pointer', fontSize: '.85rem' }}>✕</button>
+              <button onClick={closeModal} style={{ background: 'var(--c-border)', border: '1px solid var(--c-border-dark)', borderRadius: 8, padding: '.4rem .75rem', color: 'var(--c-text-muted)', cursor: 'pointer', fontSize: '.85rem' }}>✕</button>
             </div>
-            <div style={{ flex: 1, background: '#0a0a0a', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 420, overflow: 'hidden' }}>
+            <div style={{ flex: 1, background: 'var(--c-surface-2)', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 420, overflow: 'hidden' }}>
               <img src={imgUrl(modal.slug, modal.images[activeImg])} alt="" style={{ maxWidth: '100%', maxHeight: '58vh', objectFit: 'contain' }} />
             </div>
             {modal.images.length > 1 && (

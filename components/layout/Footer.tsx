@@ -30,7 +30,7 @@ function LogoLink() {
   return (
     <Link href="/" onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
       style={{ display: 'inline-flex', alignItems: 'center', gap: '.65rem', textDecoration: 'none', marginBottom: '1.25rem' }}>
-      <div style={{ width: 38, height: 38, borderRadius: 10, background: 'linear-gradient(135deg,#1F4D43,#2E6B5E)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 700, color: 'white', fontFamily: 'Georgia,serif', boxShadow: h ? '0 0 22px rgba(46,107,94,.65), 0 4px 14px rgba(46,107,94,.4)' : '0 4px 14px rgba(46,107,94,.3)', transform: h ? 'rotate(-5deg) scale(1.1)' : 'rotate(0) scale(1)', transition: 'all .3s ease' }}>R</div>
+      <div style={{ width: 38, height: 38, borderRadius: 10, background: 'linear-gradient(135deg,#1F4D43,#2E6B5E)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 700, color: 'var(--c-text)', fontFamily: 'Georgia,serif', boxShadow: h ? '0 0 22px rgba(46,107,94,.65), 0 4px 14px rgba(46,107,94,.4)' : '0 4px 14px rgba(46,107,94,.3)', transform: h ? 'rotate(-5deg) scale(1.1)' : 'rotate(0) scale(1)', transition: 'all .3s ease' }}>R</div>
       <span style={{ fontSize: '1rem', fontWeight: 900, letterSpacing: '.12em', color: h ? '#4A8C7C' : 'white', transition: 'color .3s ease' }}>رُس</span>
     </Link>
   )
@@ -39,7 +39,7 @@ function LogoLink() {
 function Col({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div style={{ fontSize: '.65rem', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.4)', marginBottom: '1.25rem' }}>{title}</div>
+      <div style={{ fontSize: '.65rem', fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase' as const, color: 'var(--c-text-muted)', marginBottom: '1.25rem' }}>{title}</div>
       {children}
     </div>
   )
@@ -61,7 +61,7 @@ export default function Footer() {
   const [sh, setSh] = useState<number | null>(null)
 
   return (
-    <footer style={{ background: '#090d0c', borderTop: '1px solid rgba(255,255,255,.06)' }}>
+    <footer style={{ background: 'var(--c-bg)', borderTop: '1px solid var(--c-border)' }}>
 
       {/* main footer */}
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 1.5rem 0' }}>
@@ -72,7 +72,7 @@ export default function Footer() {
             {/* logo */}
             <LogoLink />
 
-            <p style={{ fontSize: '.8rem', color: 'rgba(255,255,255,.5)', lineHeight: 1.9, marginBottom: '1.75rem', maxWidth: 240 }}>
+            <p style={{ fontSize: '.8rem', color: 'var(--c-text-muted)', lineHeight: 1.9, marginBottom: '1.75rem', maxWidth: 240 }}>
               آژانس هوشمند برندینگ — ترکیب تفکر استراتژیک انسانی و تحلیل‌های داده‌محور.
             </p>
 
@@ -84,7 +84,7 @@ export default function Footer() {
               ].map(item => (
                 <a key={item.href} href={item.href} style={{ display: 'flex', alignItems: 'center', gap: '.6rem', textDecoration: 'none' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color='rgba(74,140,124,.85)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color='rgba(255,255,255,.3)' }}>
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color='var(--c-text-light)' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ flexShrink:0, color:'rgba(74,140,124,.5)' }}><path d={item.icon}/></svg>
                   <span style={{ fontSize: '.78rem', color: 'inherit', transition: 'color .2s ease', direction: 'ltr' }}>{item.text}</span>
                 </a>
@@ -97,7 +97,7 @@ export default function Footer() {
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" title={s.title}
                   onMouseEnter={() => setSh(i)} onMouseLeave={() => setSh(null)}
                   style={{ width: 34, height: 34, borderRadius: 9, background: sh===i ? 'rgba(46,107,94,.2)' : 'rgba(255,255,255,.04)', border: `1px solid ${sh===i ? 'rgba(74,140,124,.4)' : 'rgba(255,255,255,.07)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: sh===i ? 'translateY(-3px)' : 'none', transition: 'all .2s ease' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={sh===i ? 'rgba(74,140,124,.9)' : 'rgba(255,255,255,.3)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke .2s' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={sh===i ? 'rgba(74,140,124,.9)' : 'var(--c-text-light)'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke .2s' }}>
                     <path d={s.path}/>
                   </svg>
                 </a>
@@ -121,7 +121,7 @@ export default function Footer() {
                 style={{ display:'flex', alignItems:'center', justifyContent:'center', padding:'.75rem 1.25rem', background:'rgba(46,107,94,.08)', border:'1px solid rgba(74,140,124,.15)', borderRadius:10, fontSize:'.82rem', fontWeight:700, color:'rgba(74,140,124,.9)', textDecoration:'none', transition:'all .22s ease' }}>
                 مشاوره رایگان ←
               </Link>
-              <p style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.45)', lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontSize: '.72rem', color: 'var(--c-text-muted)', lineHeight: 1.7, margin: 0 }}>
                 بدون تعهد اولیه، فقط یک گفتگو.
               </p>
             </div>
@@ -130,8 +130,8 @@ export default function Footer() {
         </div>
 
         {/* bottom bar */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,.06)', padding: '1.25rem 0', textAlign: 'center' as const }}>
-          <span style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.45)' }}>کلیه حقوق مادی و معنوی این وب‌سایت متعلق به آژانس برندینگ رس می‌باشد.</span>
+        <div style={{ borderTop: '1px solid var(--c-border)', padding: '1.25rem 0', textAlign: 'center' as const }}>
+          <span style={{ fontSize: '.75rem', color: 'var(--c-text-muted)' }}>کلیه حقوق مادی و معنوی این وب‌سایت متعلق به آژانس برندینگ رس می‌باشد.</span>
         </div>
       </div>
 

@@ -104,6 +104,7 @@ export interface Brand {
 }
 
 export interface BrandCreateInput {
+  has_strategy?: boolean
   name: string
   industry: string
   description?: string

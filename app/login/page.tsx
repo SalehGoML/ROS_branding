@@ -29,7 +29,7 @@ export default function LoginPage() {
       const res = await authAPI.login({ email: form.identifier, password: form.password })
       localStorage.setItem('ros_token', res.token)
       localStorage.setItem('ros_user', JSON.stringify(res.user))
-      router.push('/dashboard')
+      router.push(res.user.role === 'admin' ? '/admin/dashboard' : '/dashboard')
     } catch (err: any) {
       setError(err.message || 'ایمیل یا رمز عبور اشتباه است')
     } finally {

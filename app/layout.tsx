@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
             document.documentElement.setAttribute('data-theme','dark');
-            document.documentElement.style.background='#0C0F0E';
+            
           })();
         `}} />
       </head>

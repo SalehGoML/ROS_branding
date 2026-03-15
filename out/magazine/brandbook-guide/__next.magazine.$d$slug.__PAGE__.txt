@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[82777,["/_next/static/chunks/2e6933981d034387.js","/_next/static/chunks/c22eeed1e2667449.js"],"default"]
+2:I[82777,["/_next/static/chunks/ecc8b2541d35ec98.js","/_next/static/chunks/bb0ef8395ec7ca2e.js"],"default"]
 3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"2O4zYqhkH6-QoQC3PUkr5","rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"brandbook-guide"}],[["$","script","script-0",{"src":"/_next/static/chunks/c22eeed1e2667449.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"hbJMUrSRMxJ8_QDwL6VEQ","rsc":["$","$1","c",{"children":[["$","$L2",null,{"slug":"brandbook-guide"}],[["$","script","script-0",{"src":"/_next/static/chunks/bb0ef8395ec7ca2e.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null

@@ -162,13 +162,13 @@ export default function Header() {
           <Link href="/ai" className="hide-mobile" onMouseEnter={() => setAiHovered(true)} onMouseLeave={() => setAiHovered(false)} style={{
             display: 'flex', alignItems: 'center', gap: '.5rem', padding: '.46rem 1rem',
             background: aiHovered
-              ? 'linear-gradient(135deg, rgba(139,92,246,.18), rgba(109,40,217,.12))'
-              : 'linear-gradient(135deg, rgba(109,40,217,.08), rgba(139,92,246,.05))',
-            border: `1px solid ${aiHovered ? 'rgba(139,92,246,.45)' : 'rgba(139,92,246,.18)'}`,
-            color: aiHovered ? '#c4b5fd' : '#a78bfa',
+              ? 'linear-gradient(135deg, rgba(231,198,115,.18), rgba(109,40,217,.12))'
+              : 'linear-gradient(135deg, rgba(109,40,217,.08), rgba(231,198,115,.05))',
+            border: `1px solid ${aiHovered ? 'rgba(231,198,115,.45)' : 'rgba(231,198,115,.18)'}`,
+            color: aiHovered ? '#f5d98a' : '#e7c673',
             borderRadius: 8, fontSize: '.8rem', fontWeight: 600,
             textDecoration: 'none', transition: 'all .3s cubic-bezier(.16,1,.3,1)',
-            boxShadow: aiHovered ? '0 0 24px rgba(139,92,246,.2), inset 0 1px 0 rgba(255,255,255,.06)' : 'inset 0 1px 0 rgba(255,255,255,.04)',
+            boxShadow: aiHovered ? '0 0 24px rgba(231,198,115,.2), inset 0 1px 0 rgba(255,255,255,.06)' : 'inset 0 1px 0 rgba(255,255,255,.04)',
             transform: aiHovered ? 'translateY(-1px)' : 'none',
             position: 'relative' as const, overflow: 'hidden',
           }}>
@@ -179,15 +179,15 @@ export default function Header() {
               pointerEvents: 'none' as const,
             }} />
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0, animation: 'aiGlow 2.5s ease-in-out infinite', opacity: .9 }}>
-              <path d="M12 3 L13.5 9 L19 10 L13.5 12 L15 18 L12 14 L9 18 L10.5 12 L5 10 L10.5 9 Z" fill="#a78bfa" opacity=".7"/>
+              <path d="M12 3 L13.5 9 L19 10 L13.5 12 L15 18 L12 14 L9 18 L10.5 12 L5 10 L10.5 9 Z" fill="#e7c673" opacity=".85"/>
               <path d="M19 3 L19.8 5.5 L22 6 L19.8 6.8 L19 9 L18.2 6.8 L16 6 L18.2 5.5 Z" fill="#c4b5fd" opacity=".6"/>
               <path d="M5 15 L5.5 16.8 L7 17 L5.5 17.5 L5 19 L4.5 17.5 L3 17 L4.5 16.8 Z" fill="#c4b5fd" opacity=".5"/>
             </svg>
             <span style={{ position: 'relative' }}>دستیار هوشمند رُس</span>
-            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#a78bfa', display: 'block', flexShrink: 0, animation: 'aiPulse 2s ease-in-out infinite', boxShadow: '0 0 6px #a78bfa' }} />
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#e7c673', display: 'block', flexShrink: 0, animation: 'aiPulse 2s ease-in-out infinite', boxShadow: '0 0 6px #e7c673' }} />
           </Link>
 
-          <Link href="/contact/request-consultation" className="hide-mobile" style={{
+          <Link href="/login" className="hide-mobile" style={{
             padding: '.5rem 1.15rem',
             background: 'linear-gradient(135deg, #2E6B5E, #3d8573)',
             color: 'white', borderRadius: 8, fontSize: '.82rem', fontWeight: 700,
@@ -195,7 +195,7 @@ export default function Header() {
           }}
             onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 6px 24px rgba(46,107,94,.5)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
             onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 12px rgba(46,107,94,.3)'; e.currentTarget.style.transform = 'translateY(0)' }}
-          >مشاوره رایگان ←</Link>
+          >ورود ←</Link>
 
           <div style={{ width: 1, height: 22, background: 'var(--c-border)' }} className="hide-mobile" />
 
@@ -234,14 +234,14 @@ export default function Header() {
           ))}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem', marginTop: '1rem' }}>
             <Link href="/ai" onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '.7rem', textAlign: 'center' as const, border: '1px solid rgba(46,107,94,.3)', borderRadius: 8, background: 'rgba(46,107,94,.08)', color: 'var(--c-primary)', fontSize: '.88rem', fontWeight: 600, textDecoration: 'none' }}>دستیار هوشمند رُس</Link>
-            <Link href="/contact/request-consultation" onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '.75rem', textAlign: 'center' as const, background: 'var(--c-primary)', color: 'white', borderRadius: 8, fontSize: '.9rem', fontWeight: 700, textDecoration: 'none' }}>مشاوره رایگان</Link>
+            <Link href="/login" onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '.75rem', textAlign: 'center' as const, background: 'var(--c-primary)', color: 'white', borderRadius: 8, fontSize: '.9rem', fontWeight: 700, textDecoration: 'none' }}>ورود به داشبورد</Link>
           </div>
         </div>
       )}
 
       <style>{`
         @keyframes dropIn { from { opacity:0; transform:translateY(-10px) scale(.98) } to { opacity:1; transform:translateY(0) scale(1) } }
-        @keyframes pulse { 0%,100% { box-shadow:0 0 0 2px rgba(46,107,94,.25) } 50% { box-shadow:0 0 0 4px rgba(46,107,94,.1) } } @keyframes aiPulse { 0%,100% { opacity:1;transform:scale(1) } 50% { opacity:.3;transform:scale(.6) } } @keyframes aiShimmer { 0%{transform:translateX(-150%)} 60%,100%{transform:translateX(250%)} } @keyframes aiGlow { 0%,100%{filter:drop-shadow(0 0 3px #a78bfa) brightness(1)} 50%{filter:drop-shadow(0 0 8px #a78bfa) brightness(1.3)} }
+        @keyframes pulse { 0%,100% { box-shadow:0 0 0 2px rgba(46,107,94,.25) } 50% { box-shadow:0 0 0 4px rgba(46,107,94,.1) } } @keyframes aiPulse { 0%,100% { opacity:1;transform:scale(1) } 50% { opacity:.3;transform:scale(.6) } } @keyframes aiShimmer { 0%{transform:translateX(-150%)} 60%,100%{transform:translateX(250%)} } @keyframes aiGlow { 0%,100%{filter:drop-shadow(0 0 3px #e7c673) brightness(1)} 50%{filter:drop-shadow(0 0 8px #e7c673) brightness(1.3)} }
         @media (max-width: 768px) { .hide-mobile { display:none !important } .hamburger { display:flex !important } }
       `}</style>
     </header>
