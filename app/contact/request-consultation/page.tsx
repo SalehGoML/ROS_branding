@@ -32,6 +32,8 @@ const timelines = [
 
 export default function RequestConsultationPage() {
   const [step, setStep] = useState(1)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({
     name: '', company: '', role: '', email: '', phone: '',
     service: '', budget: '', timeline: '', description: '',
@@ -314,13 +316,32 @@ export default function RequestConsultationPage() {
               }}>
                 ← قبلی
               </button>
-              <button onClick={() => setStep(4)} style={{
+              <button onClick={async () => {
+                setLoading(true)
+                setError('')
+                try {
+                  const { contactAPI } = await import('@/lib/api')
+                  await contactAPI.submit({
+                    name: form.name,
+                    email: form.email,
+                    phone: form.phone,
+                    subject: `درخواست مشاوره — ${form.service || 'عمومی'}`,
+                    message: `شرکت: ${form.company}\nنقش: ${form.role}\nخدمات: ${form.service}\nبودجه: ${form.budget}\nزمان‌بندی: ${form.timeline}\nتوضیحات: ${form.description}`,
+                  })
+                  setStep(4)
+                } catch (e: unknown) {
+                  setError(e instanceof Error ? e.message : 'خطا در ارسال')
+                } finally {
+                  setLoading(false)
+                }
+              }} disabled={loading} style={{
                 padding: '.85rem 2rem',
                 background: 'var(--c-primary)', color: 'white',
                 border: 'none', borderRadius: 'var(--r-sm)',
-                fontSize: '.95rem', fontWeight: 600, cursor: 'pointer',
+                fontSize: '.95rem', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                opacity: loading ? 0.7 : 1,
               }}>
-                ارسال درخواست ←
+                {loading ? 'در حال ارسال...' : 'ارسال درخواست ←'}
               </button>
             </div>
           </div>

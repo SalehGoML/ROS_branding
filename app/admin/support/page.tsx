@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { adminAPI, AdminContact } from '@/lib/api'
 
 const statusMap: Record<string, { label: string; bg: string; color: string }> = {
+  new:      { label: 'جدید',        bg: 'rgba(239,68,68,.1)',   color: '#F87171' },
   unread:   { label: 'خوانده‌نشده', bg: 'rgba(239,68,68,.1)',   color: '#F87171' },
   read:     { label: 'خوانده‌شده',  bg: 'rgba(52,211,153,.1)',  color: '#34D399' },
   resolved: { label: 'حل‌شده',      bg: 'rgba(255,255,255,.06)', color: 'rgba(255,255,255,.3)' },
@@ -155,8 +156,20 @@ export default function AdminSupportPage() {
                     {selected === c.id && (
                       <tr key={`${c.id}-detail`}>
                         <td colSpan={6} style={{ padding: '1.25rem 1.5rem', background: 'rgba(46,107,94,.05)', borderTop: '1px solid rgba(255,255,255,.04)' }}>
-                          <div style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.5)', marginBottom: '.5rem' }}>از: {c.name} — {c.email}</div>
-                          <div style={{ fontSize: '.85rem', color: 'white', lineHeight: 1.8, background: '#0F1117', padding: '1rem', borderRadius: 8, border: '1px solid rgba(255,255,255,.06)' }}>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px,1fr))', gap: '.75rem', marginBottom: '1rem' }}>
+                            {[
+                              { label: 'نام', value: c.name },
+                              { label: 'ایمیل', value: c.email },
+                              { label: 'تلفن', value: (c as any).phone || '—' },
+                              { label: 'تاریخ', value: new Date(c.created_at).toLocaleDateString('fa-IR') },
+                            ].map(d => (
+                              <div key={d.label}>
+                                <div style={{ fontSize: '.68rem', color: 'rgba(255,255,255,.3)', marginBottom: '.2rem' }}>{d.label}</div>
+                                <div style={{ fontSize: '.82rem', color: 'white' }}>{d.value}</div>
+                              </div>
+                            ))}
+                          </div>
+                          <div style={{ fontSize: '.85rem', color: 'white', lineHeight: 1.8, background: '#0F1117', padding: '1rem', borderRadius: 8, border: '1px solid rgba(255,255,255,.06)', whiteSpace: 'pre-wrap' }}>
                             {c.message}
                           </div>
                         </td>

@@ -171,6 +171,7 @@ export interface AdminUser {
 }
 
 export interface AdminContact {
+  phone?: string
   id: string
   name: string
   email: string
@@ -212,7 +213,7 @@ export const adminAPI = {
     request<{ analyses: AdminAnalysis[]; total: number }>('/admin/analyses'),
 
   getContacts: () =>
-    request<{ contacts: AdminContact[]; total: number }>('/admin/contacts'),
+    request<AdminContact[]>("/admin/contacts").then(data => ({ contacts: Array.isArray(data) ? data : (data as any).contacts ?? [], total: Array.isArray(data) ? data.length : 0 })),
 
   updateContactStatus: (id: string, status: 'read' | 'unread' | 'resolved') =>
     request<{ message: string }>(`/admin/contacts/${id}/status`, {
