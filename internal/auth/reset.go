@@ -3,6 +3,7 @@ package auth
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"log"
 	"net/http"
 	"time"
 
@@ -14,6 +15,7 @@ import (
 func generateToken() string {
 	b := make([]byte, 32)
 	rand.Read(b)
+
 	return hex.EncodeToString(b)
 }
 
@@ -23,14 +25,15 @@ func (h *Handler) ForgotPassword(c *gin.Context) {
 	}
 	if err := c.ShouldBindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+
 		return
 	}
 
 	var userID string
 	err := h.db.QueryRow("SELECT id FROM users WHERE email=$1", body.Email).Scan(&userID)
 	if err != nil {
-		// برای امنیت همیشه 200 برگردون
 		c.JSON(http.StatusOK, gin.H{"message": "اگر این ایمیل ثبت شده، لینک بازیابی ارسال شد"})
+
 		return
 	}
 
@@ -43,16 +46,20 @@ func (h *Handler) ForgotPassword(c *gin.Context) {
 
 	resetLink := h.frontendURL + "/reset-password?token=" + token
 
-	// ارسال ایمیل
 	if h.email != nil {
-		go h.email.SendResetPassword(body.Email, resetLink)
+		go func() {
+			if err := h.email.SendResetPassword(body.Email, resetLink); err != nil {
+				log.Printf("[EMAIL ERROR] %s: %v", body.Email, err)
+			} else {
+				log.Printf("[EMAIL OK] sent to %s", body.Email)
+			}
+		}()
+	} else {
+		log.Printf("[EMAIL SKIP] email service is nil")
 	}
 
-	// همیشه dev_token برگردون
 	c.JSON(http.StatusOK, gin.H{
 		"message":   "اگر این ایمیل ثبت شده، لینک بازیابی ارسال شد",
-		"dev_link":  resetLink,
-		"dev_token": token,
 	})
 }
 
@@ -72,6 +79,7 @@ func (h *Handler) ResetPassword(c *gin.Context) {
 		Scan(&tokenID, &userID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "لینک نامعتبر یا منقضی شده است"})
+
 		return
 	}
 

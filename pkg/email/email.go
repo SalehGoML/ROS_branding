@@ -2,6 +2,7 @@ package email
 
 import (
 	"fmt"
+
 	"gopkg.in/gomail.v2"
 )
 
@@ -23,12 +24,13 @@ func NewService(cfg Config) *Service {
 
 func (s *Service) Send(to, subject, body string) error {
 	m := gomail.NewMessage()
-	m.SetHeader("From", fmt.Sprintf("رُس <%s>", s.cfg.From))
+	m.SetHeader("From", "ROS Agency <"+s.cfg.From+">")
 	m.SetHeader("To", to)
 	m.SetHeader("Subject", subject)
 	m.SetBody("text/html", body)
 
 	d := gomail.NewDialer(s.cfg.Host, s.cfg.Port, s.cfg.Username, s.cfg.Password)
+
 	return d.DialAndSend(m)
 }
 
