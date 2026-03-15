@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { adminAPI, AdminUser } from '@/lib/api'
 
 const planColor: Record<string, { bg: string; color: string }> = {
@@ -125,7 +125,7 @@ export default function AdminUsersPage() {
               </thead>
               <tbody>
                 {users.map(u => (
-                  <>
+                  <React.Fragment key={u.id}>
                     <tr key={u.id} onClick={() => setSelected(selected === u.id ? null : u.id)}
                       style={{ cursor: 'pointer', background: selected === u.id ? 'rgba(46,107,94,.08)' : 'transparent' }}>
                       <td style={{ ...tdStyle, color: 'white', fontWeight: 500 }}>{u.full_name}</td>
@@ -173,7 +173,7 @@ export default function AdminUsersPage() {
                         </td>
                       </tr>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>

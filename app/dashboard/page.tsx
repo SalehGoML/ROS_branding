@@ -60,8 +60,8 @@ export default function DashboardPage() {
           analysisAPI.getScores(b.id),
           analysisAPI.getByBrand(b.id),
         ])
-        setScores(s)
-        setAnalyses(a)
+        setScores(s ?? [])
+        setAnalyses(a ?? [])
       } catch {
         // کاربر برند ندارد یا لاگین نیست
       }
@@ -308,12 +308,12 @@ export default function DashboardPage() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              {scores.length === 0 && (
+              {(scores ?? []).length === 0 && (
                 <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--c-text-muted)', fontSize: '.85rem' }}>
                   هنوز تحلیلی ثبت نشده است.
                 </div>
               )}
-              {scores.map(ch => (
+              {(scores ?? []).map(ch => (
                 <div key={ch.channel} style={{
                   padding: '1.25rem',
                   background: 'var(--c-surface-2)',
@@ -371,9 +371,9 @@ export default function DashboardPage() {
               </button>
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: '1rem', height: 120 }}>
-              {analyses.length === 0
+              {(analyses ?? []).length === 0
                 ? <div style={{ fontSize: '.82rem', color: 'var(--c-text-muted)', margin: 'auto' }}>داده‌ای موجود نیست</div>
-                : analyses.slice(-6).map((a, i, arr) => (
+                : (analyses ?? []).slice(-6).map((a, i, arr) => (
                   <div key={a.id} style={{
                     flex: 1, display: 'flex', flexDirection: 'column',
                     alignItems: 'center', gap: '.5rem', height: '100%', justifyContent: 'flex-end',
@@ -443,12 +443,12 @@ export default function DashboardPage() {
               پیشنهادنامه بهبود
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-              {scores.length === 0 && (
+              {(scores ?? []).length === 0 && (
                 <div style={{ fontSize: '.82rem', color: 'var(--c-text-muted)', textAlign: 'center', padding: '1rem' }}>
                   پس از اولین تحلیل، پیشنهادها اینجا نمایش داده می‌شود.
                 </div>
               )}
-              {scores.map(s => {
+              {(scores ?? []).map(s => {
                 const avg = Math.round((s.personality + s.tone + s.values) / 3)
                 const priority = avg < 50 ? 'high' : avg < 75 ? 'medium' : 'low'
                 return (

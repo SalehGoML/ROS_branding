@@ -200,7 +200,7 @@ export const adminAPI = {
     if (params?.page)   q.set('page',   String(params.page))
     if (params?.limit)  q.set('limit',  String(params.limit))
     if (params?.search) q.set('search', params.search)
-    return request<{ users: AdminUser[]; total: number }>(`/admin/users?${q}`)
+    return request<AdminUser[] | { users: AdminUser[]; total: number }>(`/admin/users?${q}`).then((data: any) => ({ users: Array.isArray(data) ? data : (data.users ?? []), total: Array.isArray(data) ? data.length : (data.total ?? 0) }))
   },
 
   updateUserRole: (id: string, role: 'user' | 'admin') =>
@@ -210,7 +210,7 @@ export const adminAPI = {
     }),
 
   getAnalyses: () =>
-    request<{ analyses: AdminAnalysis[]; total: number }>('/admin/analyses'),
+    request<AdminAnalysis[] | { analyses: AdminAnalysis[]; total: number }>('/admin/analyses').then((data: any) => ({ analyses: Array.isArray(data) ? data : (data.analyses ?? []), total: Array.isArray(data) ? data.length : (data.total ?? 0) })),
 
   getContacts: () =>
     request<AdminContact[]>("/admin/contacts").then(data => ({ contacts: Array.isArray(data) ? data : (data as any).contacts ?? [], total: Array.isArray(data) ? data.length : 0 })),
