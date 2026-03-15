@@ -60,10 +60,10 @@ export default function AdminDashboardPage() {
     : 1;
 
   const statCards = stats ? [
-    { label: "کاربران فعال",           value: toFa(stats.active_users.toLocaleString("en")),     icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" },
-    { label: "تحلیل‌های انجام‌شده",    value: toFa(stats.total_analyses.toLocaleString("en")),   icon: "M18 20V10M12 20V4M6 20v-6" },
-    { label: "میانگین تطابق برند",     value: toFa(Math.round(stats.avg_brand_score)) + "٪",     icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" },
-    { label: "اسناد تولیدشده با AI",   value: toFa(stats.ai_documents),                          icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6" },
+    { label: "کاربران",               value: toFa(stats.total_users.toLocaleString("en")),       icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" },
+    { label: "برندها",                value: toFa(stats.total_brands.toLocaleString("en")),       icon: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" },
+    { label: "تحلیل‌های انجام‌شده",   value: toFa(stats.total_analyses.toLocaleString("en")),   icon: "M18 20V10M12 20V4M6 20v-6" },
+    { label: "تماس‌های جدید",         value: toFa(stats.new_contacts),                           icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6" },
   ] : [];
 
   const staticAlerts = [

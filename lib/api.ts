@@ -147,11 +147,14 @@ export interface ContactForm {
 // ─── Admin Types ───────────────────────────────────────────
 export interface AdminStats {
   total_users: number
-  active_users: number
+  total_brands: number
   total_analyses: number
-  avg_brand_score: number
-  ai_documents: number
-  monthly_growth: { month: string; users: number }[]
+  total_contacts: number
+  new_contacts: number
+  active_users?: number
+  avg_brand_score?: number
+  ai_documents?: number
+  monthly_growth?: { month: string; users: number }[]
 }
 
 export interface AdminUser {
