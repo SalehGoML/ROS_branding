@@ -22,6 +22,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       router.replace('/dashboard')
       return
     }
+    if (token && pathname.startsWith('/admin')) {
+      setChecked(true)
+      return
+    }
 
     setChecked(true)
   }, [pathname])
